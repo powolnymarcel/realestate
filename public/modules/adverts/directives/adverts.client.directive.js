@@ -2,7 +2,7 @@
 
 angular.module('adverts')
 	.directive('map', ['$http','$location','shapes','d3','Adverts','AdvertsPID','$', 
-	function ($http,$location,shapes,d3,Adverts,AdvertsPID){
+	function ($http,$location,shapes,d3,Adverts,AdvertsPID,$){
 	
 	console.location('shapes');
 	function drawShapes(scope,element) 
