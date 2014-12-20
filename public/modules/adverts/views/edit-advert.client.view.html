@@ -4,20 +4,110 @@
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
-            <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="advert.name" id="name" class="form-control" placeholder="Name" required>
+              <fieldset>
+                <legend></legend>
+                   <fieldset> <legend>Localisation</legend>
+                    <div class="form-group">
+                        <label for="region" class="col-sm-2 control-label">Region</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="region" data-ng-model="advert.region">
+                                <option value="Alsace">Alsace</option>
+                                <option value="Aquitaine">Aquitaine</option>
+                                <option value="Auvergne">Auvergne</option>
+                                <option value="Basse Normandie">Basse-Normandie</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
-                </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
-            </fieldset>
+
+                    <div class="form-group">
+                      <label for="codepostale" class="col-sm-2 control-label">Code postale</label>
+                      <div class="col-sm-10">
+                        <input type="number" class="form-control" id="codepostale" data-ng-model="advert.codepostale" placeholder="">
+                      </div>
+                    </div>
+                  </fieldset>
+
+                     <fieldset> <legend>Vos informations </legend>
+                        <div class="form-group">
+                          <label for="nom" class="col-sm-2 control-label">Votre nom</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="nom" data-ng-model="advert.nom" placeholder="nom">
+                          </div>
+                        </div>
+                          <div class="form-group">
+                          <label for="nom" class="col-sm-2 control-label">Votre prenom</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="prenom" data-ng-model="advert.prenom" placeholder="prenom">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="email" class="col-sm-2 control-label">Email</label>
+                          <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" data-ng-model="advert.email" placeholder="email">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="tel" class="col-sm-2 control-label">Téléphone</label>
+                          <div class="col-sm-10">
+                            <input type="number" class="form-control" id="tel" data-ng-model="advert.tel" placeholder="">
+                          </div>
+                        </div>
+                     </fieldset>
+
+
+                     <fieldset> <legend> Votre annonce</legend>
+                       <div class="form-group">
+                          <label for="titre" class="col-sm-2 control-label">Titre de l'annonce</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="titre" data-ng-model="advert.titre" placeholder="titre de  l'annonce">
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">Type de bien</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="type" data-ng-model="advert.type">
+                                    <option value="appartement">Appartement</option>
+                                    <option value="maison">Maison</option>
+                                    <option value="terrain">Terrain</option>
+                                    <option value="immeuble">Immeuble-Ensemble</option>
+                                    <option value="mobile">Mobil-Home</option>
+                                    <option value="parking">Parking-Box</option>
+                                </select>
+                            </div>
+                        </div>
+
+                         <div class="form-group">
+                          <label for="description" class="col-sm-2 control-label">Description de l'annonce</label>
+                          <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" data-ng-model="advert.description"></textarea>
+                          </div>
+                        </div>
+
+                       <div class="form-group">
+                          <label for="surface" class="col-sm-2 control-label">Surface</label>
+                          <div class="col-sm-10">
+                            <input type="number" class="form-control" id="prix" placeholder="Surface" data-ng-model="advert.surface">
+                          </div>
+                        </div>
+
+                       <div class="form-group">
+                          <label for="prix" class="col-sm-2 control-label">Prix</label>
+                          <div class="col-sm-10">
+                            <input type="number" class="form-control" id="prix" placeholder="prix" data-ng-model="advert.prix">
+                          </div>
+                        </div>
+                     </fieldset>
+
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" value="Update" class="btn btn-default">
+                      </div>
+                    </div>   
+                    <div data-ng-show="error" class="text-danger">
+                      <strong data-ng-bind="error"></strong>
+                    </div>     
+                </fieldset>
         </form>
     </div>
 </section>

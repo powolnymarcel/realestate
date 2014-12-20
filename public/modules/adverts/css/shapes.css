@@ -1,0 +1,45 @@
+.buildings {
+    stroke: rgba(70, 70, 90, 1);
+    fill: rgba(137, 156, 189, 1);
+}
+
+.buildings.over {
+    stroke: rgba(70, 70, 90, 1);
+    fill: black;
+}
+
+.roads {
+    stroke: rgba(143, 136, 136, 1);
+    fill: none;
+}
+
+.amenities {
+    stroke: rgba(228, 14, 14, 1);
+    fill: rgba(228, 102, 93, 1);
+}
+
+.naturals {
+    stroke: rgba(0, 255, 66, 1);
+    fill: rgba(208, 245, 208, 1);
+}
+
+.fixed {
+    position: fixed;
+    margin-left: 450px;
+}
+
+
+.boxes{   
+    position: fixed;
+    left:650px;
+    top: 200px;
+    width: 200px; 
+    height: 110px;
+    float: left;
+    background: yellow;
+}
+
+.advert{   
+    width: 450px; 
+    height:250px;
+}

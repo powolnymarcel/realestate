@@ -14,6 +14,12 @@ module.exports = function(app) {
 		.put(users.requiresLogin, adverts.hasAuthorization, adverts.update)
 		.delete(users.requiresLogin, adverts.hasAuthorization, adverts.delete);
 
+	app.route('/adverts/pidroute/:advertPID')
+		.get(adverts.read)
+		.put(users.requiresLogin, adverts.hasAuthorization, adverts.update)
+		.delete(users.requiresLogin, adverts.hasAuthorization, adverts.delete);
+
 	// Finish by binding the Advert middleware
 	app.param('advertId', adverts.advertByID);
+	app.param('advertPID', adverts.advertByPID);
 };

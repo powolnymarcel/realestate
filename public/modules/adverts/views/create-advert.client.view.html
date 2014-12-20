@@ -3,21 +3,118 @@
         <h1>New Advert</h1>
     </div>
     <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="create()" novalidate>
-            <fieldset>
+         <form id="form" class="form-horizontal" data-ng-submit="create()" novalidate>
+           <fieldset> <legend>Localisation</legend>
+            <div class="form-group">
+                <label for="region" class="col-sm-4 control-label">Region</label>
+                <div class="col-sm-8">
+                    <select class="form-control" id="region" data-ng-model="region">
+                        <option value="Alsace">Alsace</option>
+                        <option value="Aquitaine">Aquitaine</option>
+                        <option value="Auvergne">Auvergne</option>
+                        <option value="Basse Normandie">Basse-Normandie</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label for="codepostale" class="col-sm-4 control-label">Code postale</label>
+              <div class="col-sm-8">
+                <input type="number" class="form-control" id="codepostale" data-ng-model="codepostale" placeholder="">
+              </div>
+            </div>
+             </fieldset>
+
+             <fieldset> <legend>Vos informations </legend>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                  <label for="nom" class="col-sm-4 control-label">Votre nom</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="nom" data-ng-model="nom" placeholder="nom">
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <label for="nom" class="col-sm-4 control-label">Votre prenom</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="prenom" data-ng-model="prenom" placeholder="prenom">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="col-sm-4 control-label">Email</label>
+                  <div class="col-sm-8">
+                    <input type="email" class="form-control" id="email" data-ng-model="email" placeholder="email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="tel" class="col-sm-4 control-label">Téléphone</label>
+                  <div class="col-sm-8">
+                    <input type="number" class="form-control" id="tel" data-ng-model="tel" placeholder="">
+                  </div>
+                </div>
+             </fieldset>
+
+
+             <fieldset> <legend> Votre annonce</legend>
+               <div class="form-group">
+                  <label for="titre" class="col-sm-4 control-label">Titre de l'annonce</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="titre" data-ng-model="titre" placeholder="titre de  l'annonce">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="type" class="col-sm-4 control-label">Type de bien</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="type" data-ng-model="type">
+                            <option value="appartement">Appartement</option>
+                            <option value="maison">Maison</option>
+                            <option value="terrain">Terrain</option>
+                            <option value="immeuble">Immeuble-Ensemble</option>
+                            <option value="mobile">Mobil-Home</option>
+                            <option value="parking">Parking-Box</option>
+                        </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-default">
+
+                 <div class="form-group">
+                  <label for="description" class="col-sm-4 control-label">Description de l'annonce</label>
+                  <div class="col-sm-8">
+                    <textarea class="form-control" rows="3" data-ng-model="description"></textarea>
+                  </div>
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
-            </fieldset>
-        </form>
+
+               <div class="form-group">
+                  <label for="surface" class="col-sm-4 control-label">Surface</label>
+                  <div class="col-sm-8">
+                    <input type="number" class="form-control" id="surface" placeholder="Surface en m2" data-ng-model="surface">
+                  </div>
+                </div>
+
+               <div class="form-group">
+                  <label for="prix" class="col-sm-4 control-label">Prix</label>
+                  <div class="col-sm-8">
+                    <input type="number" class="form-control" id="prix" placeholder="prix" data-ng-model="prix">
+                  </div>
+                </div>
+
+               <div class="form-group">
+                  <label for="file" class="col-sm-4 control-label">Photos</label>
+                  <div class="col-sm-8">
+                    <!--<input type="file" id="photo" data-ng-model="photo" multiple>-->
+                    <input type="file" id="file"/>
+                  </div>
+                </div>
+                
+             </fieldset>
+
+            <div class="form-group">
+              <div class="col-sm-offset-4 col-sm-8">
+              <button type="submit" class="btn btn-primary btn-lg" id="register">Valider</button>
+              </div>
+            </div>       
+        </fieldset>
+        <div data-ng-show="error" class="text-danger">
+          <strong data-ng-bind="error"></strong>
+        </div>
+     </form>
     </div>
 </section>

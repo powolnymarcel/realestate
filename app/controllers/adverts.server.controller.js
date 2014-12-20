@@ -96,6 +96,16 @@ exports.advertByID = function(req, res, next, id) {
 	});
 };
 
+exports.advertByPID = function(req, res, next, id) { 
+	Advert.findOne({'pid' : id}).populate('user', 'displayName').exec(function(err, advert) {
+		if (err) return next(err);
+		if (! advert) return next(new Error('Failed to load Realestate ' + id));
+		req.advert = advert ;
+		next();
+	});
+};
+
+
 /**
  * Advert authorization middleware
  */

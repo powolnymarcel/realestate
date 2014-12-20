@@ -1,15 +1,36 @@
 'use strict';
 
 // Adverts controller
-angular.module('adverts').controller('AdvertsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Adverts',
-	function($scope, $stateParams, $location, Authentication, Adverts) {
+angular.module('adverts').controller('AdvertsController', ['$scope', '$stateParams', 
+	'$location', 'Authentication', 'Adverts','AdvertsPID','$',
+	function($scope, $stateParams, $location, Authentication, Adverts,AdvertsPID,$) {
 		$scope.authentication = Authentication;
+
+		//To disable by defaut all form elements inside 'form'
+		$('#form :input').prop('disabled', true);
+		$scope.showAdverts = {url:'modules/adverts/views/show-advert.client.view.html', 
+							 visible:false};
 
 		// Create new Advert
 		$scope.create = function() {
 			// Create new Advert object
+			var myid  = $scope.selected_;
+			myid      = myid.replace('-','');
 			var advert = new Adverts ({
-				name: this.name
+				name: this.name,
+				pid:myid,
+				region:this.region,
+				codepostale:this.codepostale,
+				nom:this.nom,
+				prenom:this.prenom,
+				email:this.email,
+				tel:this.tel,
+
+				titre:this.titre,
+				description:this.description,
+				surface:this.surface,
+				prix:this.prix,
+				photo:this.photo
 			});
 
 			// Redirect after save
@@ -60,6 +81,15 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		$scope.findOne = function() {
 			$scope.advert = Adverts.get({ 
 				advertId: $stateParams.advertId
+			});
+		};
+
+	    // Find existing Realestate by the pid
+		$scope.findThat = function(response) {
+			console.log('findThat');
+			$scope.data = response;
+			$scope.advert = AdvertsPID.get({ 
+				advertPID: response.pid
 			});
 		};
 	}
