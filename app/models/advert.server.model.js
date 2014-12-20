@@ -24,12 +24,11 @@ var AdvertSchema = new Schema({
 	description: { type: String ,default:'Real Estate'},
 	surface:{ type: Number ,default:10},
 	prix: { type: Number ,default:800},
-	photo: {type :String,default:'img.png'},
+	photo: {type :String,default:'img.jpg'},
 
 	name: {
 		type: String,
 		default: '',
-		required: 'Please fill Advert name',
 		trim: true
 	},
 	created: {

@@ -1,0 +1,14 @@
+{
+	"pid" : "",
+	"region" : "",
+	"codepostale":"",
+	"nom": "",
+	"prenom": "",
+	"email": "",
+	"tel":"",
+	"titre": "",
+	"description": "",
+	"surface":"",
+	"prix": "",
+	"photo": "",
+}

@@ -4,6 +4,7 @@
     </div>
 
     <div class="row jumbotron col-sm-7" data-ng-repeat="advert in adverts">
+        <a data-ng-href="#!/adverts/{{advert._id}} ">
         <div class="col-sm-3 text-info">
             <img data-ng-src="modules/adverts/img/{{advert.photo}}" alt="Photo of {{advert.photo}}" class="img-thumbnail">
         </div>
@@ -13,6 +14,7 @@
             <span data-ng-bind="advert.titre"></span> 
             <span data-ng-bind="advert.description"></span>
         </div>
+        </a>
     </div>
     
 <!--

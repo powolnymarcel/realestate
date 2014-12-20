@@ -1,9 +1,24 @@
-<section data-ng-controller="AdvertsController">
+<section data-ng-controller="AdvertsController" data-ng-init="find()">
 <div class="container">
 
-	<div class="row">
-		<div class="col-md-5 ">
-		<div <div class="jumbotron"><h2>Annonces immobilières</h2></div>
+<div class="row">
+
+	  <div class="col-md-5 ">
+		<div class="row jumbotron"><h2>Annonces immobilières</h2></div>
+			<div class="row jumbotron" data-ng-repeat="advert in adverts" >
+			 <a data-ng-href="#!/adverts/{{advert._id}} ">
+			    <div class="col-sm-3 text-info">
+			        <img data-ng-src="modules/adverts/img/{{advert.photo}}" alt="Photo of {{advert.photo}}" class="img-thumbnail">
+			    </div>
+
+			    <div class="col-sm-8 text-info">
+			        <span data-ng-bind="advert.region"></span> <br/>
+			        <span data-ng-bind="advert.titre"></span> 
+			        <span data-ng-bind="advert.description"></span>
+			    </div>
+			  </a>
+			</div>
+		    <!--
 		    <div class="list-group">
 		        <a data-ng-repeat="advert in adverts" data-ng-href="#!/adverts/{{advert._id}}" class="list-group-item jumbotron" >
 					<small class="list-group-item-text">
@@ -17,6 +32,8 @@
 					<h4 class="list-group-item-heading" data-ng-bind="advert.name"></h4>
 		        </a>
 		    </div>
+		    -->
+
 		    <div class="alert alert-warning text-center" data-ng-hide="!adverts.$resolved || adverts.length">
 		    	No adverts yet, why don't you <a href="/#!/adverts/create">create one</a>?
 		    </div>
@@ -43,5 +60,5 @@
 				</tr>
 			</tbody>
 		</div>
-	</div>
+</div>
 </section>

@@ -2,7 +2,7 @@
     <div class="page-header">
         <h1>New Advert</h1>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-5 jumbotron">
          <form id="form" class="form-horizontal" data-ng-submit="create()" novalidate>
            <fieldset> <legend>Localisation</legend>
             <div class="form-group">
@@ -116,5 +116,27 @@
           <strong data-ng-bind="error"></strong>
         </div>
      </form>
+    </div>
+
+    <div class="col-md-7 fixed" id="contenu">
+      <map></map>
+      <table class="table table-hover jumbotron">
+      <thead>
+        <tr>
+          <td>Amenities</td>
+          <td>Buildings</td>
+          <td>Naturals</td>
+          <td>Roads</td>  
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td id="amenity"> </td>
+          <td id="building"> </td>
+          <td id="natural"> </td>
+          <td id="road">   </td>
+        </tr>
+      </tbody>
     </div>
 </section>
