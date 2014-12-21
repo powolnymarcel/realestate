@@ -51,6 +51,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     background: white;
+    border:1px dotted grey;
 }
 
 .image{   

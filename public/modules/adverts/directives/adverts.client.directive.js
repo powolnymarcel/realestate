@@ -27,11 +27,6 @@ angular.module('adverts')
 					}
 				}
 
-					$('#building').html(buildings.length);
-					$('#road').html(roads.length);
-				    $('#natural').html(naturals.length);
-					$('#amenity').html(amenities.length);
-
 				var container = 
 				d3.select(element[0]).append('svg')
 				                 .attr('width',600)
@@ -58,7 +53,7 @@ angular.module('adverts')
 							scope.showAdverts.visible = true;
 							includeService.includeAdvert(advert);
 						}).error(function (err) {//If this pid is not yet use for an another advert
-							scope.showAdverts.visible = true;
+							scope.showAdverts.visible = false;
 							scope.pid = d.getId();
 							$('#form :input').prop('disabled', false);					       	
 						});
@@ -102,7 +97,6 @@ angular.module('adverts')
 
 	//To disable by defaut all form elements inside 'form'
     $('#form :input').prop('disabled', true);
-	
 	// To Disable Submit Button By Default
 	$('input[type=submit]').attr('disabled','disabled');
 	// When User Fills Out Form Completely

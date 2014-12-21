@@ -159,6 +159,5 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		};//END loadFiles
 
 
-
 	}
 ]);
