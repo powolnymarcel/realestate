@@ -149,6 +149,8 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				// Closure to capture the file information.
 				reader.onload = (function(aImg) {return function(e) {aImg.src = e.target.result;};})(img);
 		        reader.readAsDataURL(file);
+
+		        sendFile(file); //Send the file to the server to be move in img folder
 			  }//END FOR
 			}//END handleFiles
 
@@ -156,7 +158,26 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			dropbox.addEventListener('dragenter', dragenter, false);
 			dropbox.addEventListener('dragover', dragover, false);
 			dropbox.addEventListener('drop', drop, false);
+
+	        function sendFile(file) {
+	            var uri = '/adverts/upload';
+	            var xhr = new XMLHttpRequest();
+	            var fd = new FormData();
+	            
+	            xhr.open('POST', uri, true);
+	            xhr.onreadystatechange = function() {
+	                if (xhr.readyState === 4 && xhr.status === 200) {
+	                    // Handle response.
+	                    alert(xhr.responseText); // handle response.
+	                }
+	            };
+	            fd.append('userFile', file);
+	            // Initiate a multipart/form-data upload
+	            xhr.send(fd);//no refresh
+	        }
+
 		};//END loadFiles
+
 
 
 	}

@@ -6,7 +6,7 @@
     <div id="advert" class="boxes" data-ng-include="showAdverts.url" data-ng-show="showAdverts.visible"></div>
 
     <div class="col-md-5 jumbotron">
-         <form id="form" class="form-horizontal" data-ng-submit="create()" novalidate>
+         <form id="form" class="form-horizontal" enctype="multipart/form-data" data-ng-submit="create()" novalidate>
            <fieldset> <legend>Localisation</legend>
             <div class="form-group">
                 <label for="region" class="col-sm-4 control-label">Region</label>
@@ -98,7 +98,7 @@
                     <!--<input type="file" id="files" name="files[]" data-ng-init="loadFiles()" multiple/>-->
 
                     <div id="dropbox" class="dragdrop" data-ng-init="loadFiles()">
-                       Drag & drop  files here...
+                       Drag and drop  files here...
                     </div>
                     <output id="list" class=""></output>
                   </div>

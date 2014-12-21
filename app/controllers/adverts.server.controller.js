@@ -105,9 +105,18 @@ exports.advertByPID = function(req, res, next, id) {
 		next();
 	});
 };
+/**
+ * Advert authorization middleware
+ */
+exports.hasAuthorization = function(req, res, next) {
+	if (req.advert.user.id !== req.user.id) {
+		return res.status(403).send('User is not authorized');
+	}
+	next();
+};
 
 
-
+// we need the fs module for moving the uploaded files
 exports.fileUpload = function(req, res) {
     // get the temporary location of the file
     var tmp_path = req.files.thumbnail.path;
@@ -129,12 +138,4 @@ exports.fileUpload = function(req, res) {
 
 
 
-/**
- * Advert authorization middleware
- */
-exports.hasAuthorization = function(req, res, next) {
-	if (req.advert.user.id !== req.user.id) {
-		return res.status(403).send('User is not authorized');
-	}
-	next();
-};
+
