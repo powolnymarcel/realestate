@@ -110,20 +110,20 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				output = [],      //-->Some informations about files will be stored in this array
 				currentIndex  = 0;//-->To allow uploading multiple files
 
-				for (var i=0,f;f = files[i]; i++) {
+				for (var i = 0, f; f = files[i]; i++)  {
 				  currentIndex = i + $scope.files.length;
 				  $scope.files[currentIndex]     = files[i];
 				  $scope.filesName[currentIndex] = $scope.files[currentIndex].name;
-			      output.push('<li><strong>', escape(f.name),'</strong></li>');
+			      output.push('<li><strong>',f.name,'</strong></li>');
 
 				  console.log('-->Image : '+$scope.files.length);
 			    }
 			    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
 			    
 			    //Dislay files names stored
-			    for (var i=0;i<$scope.files.length;i++) {
+			    for (i=0;i<$scope.files.length;i++) {
 			    	console.log('-->Stored : '+$scope.filesName[i]);
-			    };
+			    }
 			}
 
 			function handleDragOver(evt) {
