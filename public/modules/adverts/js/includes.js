@@ -3,10 +3,9 @@
 angular.module('adverts')
 .service('includeService', ['$http','$',
     function($http,$) {
-       var docs=100;
  
-        this.getDocs = function() {
-            return docs;
+        this.includeAdvert = function(advert) {
+            document.getElementById('advert').innerHTML='<h1> '+advert.description+'</h1> <h2>Hello</h2>';
         };
     }
 ]);

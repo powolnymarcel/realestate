@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('adverts')
-	.directive('map', ['$http','$location','shapes','d3','Adverts','AdvertsPID','$', 
-	function ($http,$location,shapes,d3,Adverts,AdvertsPID,$){
+	.directive('map', ['$http','$location','shapes','d3','Adverts','AdvertsPID','$','includeService', 
+	function ($http,$location,shapes,d3,Adverts,AdvertsPID,$,includeService){
 	
 	function drawShapes(scope,element) 
 	{			
@@ -55,7 +55,7 @@ angular.module('adverts')
 						.success(function (advert) {
 							scope.findThat(advert);
 							scope.showAdverts.visible = true;
-							scope.includeAdvert(advert);
+							includeService.includeAdvert(advert);
 						}).error(function (err) {//If this pid is not yet use for an another advert
 							scope.pid = d.getId();
 							$('#form :input').prop('disabled', false);					       	

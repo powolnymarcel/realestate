@@ -2,19 +2,14 @@
 
 // Adverts controller
 angular.module('adverts').controller('AdvertsController', ['$scope', '$stateParams', 
-	'$location', 'Authentication', 'Adverts','AdvertsPID','$',
-	function($scope, $stateParams, $location, Authentication, Adverts,AdvertsPID,$) {
+	'$location', 'Authentication', 'Adverts','AdvertsPID','$','includeService',
+	function($scope, $stateParams, $location, Authentication, Adverts,AdvertsPID,$,includeService) {
 		$scope.authentication = Authentication;
 
 		//To disable by defaut all form elements inside 'form'
 		$('#form :input').prop('disabled', true);
 		$scope.showAdverts = {url:'modules/adverts/views/show-advert.client.view.html', 
 							 visible:false};
-
-		$scope.includeAdvert = function(advert){
-			var doc = document.getElementById('advert');
-			doc.innerHTML='<h1> '+advert.description+'</h1> <h2>Hello</h2>';
-		}
 
 		// Create new Advert
 		$scope.create = function() {
