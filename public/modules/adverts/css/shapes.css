@@ -52,3 +52,8 @@
     overflow-x: hidden;
     background: white;
 }
+
+.image{   
+    width: 100px; 
+    height: 100px;
+}

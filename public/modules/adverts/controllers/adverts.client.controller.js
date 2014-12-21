@@ -100,38 +100,65 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		//Load files uploaded from the brower
 		$scope.loadFiles = function () {
 
-			function handleFileSelect(evt) {
-				evt.stopPropagation();
-				evt.preventDefault();
-				var files = evt.dataTransfer.files, //-->files is a FileList of File objects.
-				output = [],      //-->Some informations about files will be stored in this array
-				currentIndex  = 0;//-->To allow uploading multiple files
+			function dragenter(e) {
+			  e.stopPropagation();
+			  e.preventDefault();
+			}
 
-				for (var i = 0,f = files[i];i<files.length; i++)  {
-				  currentIndex = i + $scope.files.length;
-				  $scope.files[currentIndex]     = files[i];
-				  $scope.filesName[currentIndex] = $scope.files[currentIndex].name;
-			      output.push('<li><strong>',f.name,'</strong></li>');
+			function dragover(e) {
+			  e.stopPropagation();
+			  e.preventDefault();
+			}
 
-				  console.log('-->Image : '+$scope.files.length);
-			    }
-			    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+			function drop(e) {
+			  e.stopPropagation();
+			  e.preventDefault();
+
+			  var dt = e.dataTransfer;
+			  var files = dt.files;
+
+			  handleFiles(files);
+			}
+
+			var currentIndex  = 0;
+			function handleFiles(files) {
+			  for (var i = 0,file=files[i]; i < files.length; i++) {
+			    var imageType = /image.*/;
 			    
-			    //Dislay files names stored
-			    for (i=0;i<$scope.files.length;i++) {
+			    if (!file.type.match(imageType)) {
+			      continue;
+			    }
+
+				currentIndex = i + $scope.files.length;
+				$scope.files[currentIndex]     = files[i];
+				$scope.filesName[currentIndex] = $scope.files[currentIndex].name;
+				console.log('-->Image : '+$scope.files.length);
+
+				for (i=0;i<$scope.files.length;i++) {
 			    	console.log('-->Stored : '+$scope.filesName[i]);
 			    }
-			}
+			    
+			    //Add new image element in the ouput
+			    var img = document.createElement('img'),
+			    preview = document.getElementById('list');
+			    img.classList.add('image');
+			    img.file = file;
+			    preview.appendChild(img); // Assuming that 'preview' is a the div output where the content will be displayed.
+			    
+			    var reader = new FileReader();
+				// Closure to capture the file information.
+				reader.onload = (function(aImg) {return function(e) {aImg.src = e.target.result;};})(img);
+		        reader.readAsDataURL(file);
+			  }//END FOR
+			}//END handleFiles
 
-			function handleDragOver(evt) {
-				evt.stopPropagation();
-				evt.preventDefault();
-				evt.dataTransfer.dropEffect = 'copy'; 
-			}
+			var dropbox = document.getElementById('dropbox');
+			dropbox.addEventListener('dragenter', dragenter, false);
+			dropbox.addEventListener('dragover', dragover, false);
+			dropbox.addEventListener('drop', drop, false);
+		};//END loadFiles
 
-			var dropZone = document.getElementById('dropzone');
-			dropZone.addEventListener('dragover', handleDragOver, false);
-			dropZone.addEventListener('drop', handleFileSelect, false);
-		};
+
+
 	}
 ]);
