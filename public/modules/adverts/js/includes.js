@@ -5,8 +5,13 @@ angular.module('adverts')
     function($http,$) {
  
         this.includeAdvert = function(advert) {
-            document.getElementById('advert').innerHTML=
-            '<h1> '+advert.description+'</h1> <h2>Hello</h2>';
+
+        	var docs ='<div class="col-sm-4"><img src="modules/adverts/img/'+advert.photo+'"class="image">'+
+        	          '</div> <div class="col-sm-7">'+
+        	          '<span>'+advert.region+'</span><br/>'+
+              	      '<span>'+advert.description+'</span>'+
+                      '</div>';
+            document.getElementById('advert').innerHTML= docs;
         };
     }
 ]);

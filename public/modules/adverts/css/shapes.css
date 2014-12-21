@@ -32,17 +32,14 @@
 .boxes{   
     position: fixed;
     left:650px;
-    top: 200px;
-    width: 400px; 
+    top: 130px;
+    width: 500px; 
     height: 210px;
-    float: left;
-    background: yellow;
+    max-height: 300px;
+    border: 2px solid rgba(137, 156, 189, 1);
+    z-index: 1;
 }
 
-.advert{   
-    width: 450px; 
-    height:250px;
-}
 
 .dragdrop{
     margin: 5px 0;
