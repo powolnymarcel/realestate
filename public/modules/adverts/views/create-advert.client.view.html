@@ -2,6 +2,9 @@
     <div class="page-header">
         <h1>New Advert</h1>
     </div>
+
+    <div id="advert" class="boxes" data-ng-include="showAdverts.url" data-ng-show="showAdverts.visible"></div>
+
     <div class="col-md-5 jumbotron">
          <form id="form" class="form-horizontal" data-ng-submit="create()" novalidate>
            <fieldset> <legend>Localisation</legend>

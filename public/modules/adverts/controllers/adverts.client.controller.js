@@ -11,6 +11,11 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		$scope.showAdverts = {url:'modules/adverts/views/show-advert.client.view.html', 
 							 visible:false};
 
+		$scope.includeAdvert =function(advert){
+			var doc = document.getElementById('advert');
+			doc.innerHTML='<h1> '+advert.description+'</h1> <h2>Hello</h2>';
+		}
+
 		// Create new Advert
 		$scope.create = function() {
 			// Create new Advert object

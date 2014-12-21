@@ -4,13 +4,11 @@ angular.module('adverts')
 	.directive('map', ['$http','$location','shapes','d3','Adverts','AdvertsPID','$', 
 	function ($http,$location,shapes,d3,Adverts,AdvertsPID,$){
 	
-	console.location('shapes');
 	function drawShapes(scope,element) 
 	{			
 
 		$http.get('/modules/adverts/data/data.json').success(function(data) 
 		{
-			console.location('shapes');
 			var buildings = [], roads = [], amenities = [], naturals = [];
 				for(var i = data.length - 1; i > 0; i-- )
 				{
@@ -52,24 +50,15 @@ angular.module('adverts')
 			          	//Select to the database with the corresponding id and verify if 
 			          	//it does not already used
 			          	
-			          	console.log('I am top');
-						$http.get('/adverts/pidroute/' + d.getId().replace('-','')).success(function (response) {
-							
-							scope.findThat(response);
-							console.log('I am in success '+response.pid);
-							//var doc = document.getElementById('advert').innerHTML='<h1> Hello</h1>';
-							//console.log(scope);
+						$http.get('/adverts/pidroute/' + d.getId().replace('-',''))
+						.success(function (advert) {
+							scope.findThat(advert);
 							scope.showAdverts.visible = true;
-							//$location.path('adverts/' + response._id);
+							scope.includeAdvert(advert);
 						}).error(function (err) {//If this pid is not yet use for an another advert
-							
 							scope.pid = d.getId();
-							console.log('I am in error');
 							$('#form :input').prop('disabled', false);					       	
 						});
-
-
-			          	console.log('I am bottom');
 			        });
 
 				//Drawroads
