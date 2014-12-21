@@ -9,6 +9,7 @@ angular.module('adverts')
 
 		$http.get('/modules/adverts/data/data.json').success(function(data) 
 		{
+
 			var buildings = [], roads = [], amenities = [], naturals = [];
 				for(var i = data.length - 1; i > 0; i-- )
 				{
