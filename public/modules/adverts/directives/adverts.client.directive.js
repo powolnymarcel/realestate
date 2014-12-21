@@ -4,13 +4,13 @@ angular.module('adverts')
 	.directive('map', ['$http','$location','shapes','d3','Adverts','AdvertsPID','$', 
 	function ($http,$location,shapes,d3,Adverts,AdvertsPID,$){
 	
-	console.location('shapes');
+	//console.location('shapes');
 	function drawShapes(scope,element) 
 	{			
 
 		$http.get('/modules/adverts/data/data.json').success(function(data) 
 		{
-			console.location('shapes');
+			//console.location('shapes');
 			var buildings = [], roads = [], amenities = [], naturals = [];
 				for(var i = data.length - 1; i > 0; i-- )
 				{
