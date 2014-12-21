@@ -58,6 +58,7 @@ angular.module('adverts')
 							scope.showAdverts.visible = true;
 							includeService.includeAdvert(advert);
 						}).error(function (err) {//If this pid is not yet use for an another advert
+							scope.showAdverts.visible = true;
 							scope.pid = d.getId();
 							$('#form :input').prop('disabled', false);					       	
 						});
@@ -107,7 +108,7 @@ angular.module('adverts')
 	// When User Fills Out Form Completely
 	$('form').keyup(function(){
 	$('input[type=submit]').removeAttr('disabled');
-	
+
 	});
 
 

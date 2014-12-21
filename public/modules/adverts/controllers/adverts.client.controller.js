@@ -5,9 +5,6 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 	'$location', 'Authentication', 'Adverts','AdvertsPID','$','includeService',
 	function($scope, $stateParams, $location, Authentication, Adverts,AdvertsPID,$,includeService) {
 		
-
-
-
 		$scope.init = function () {
 			$scope.authentication = Authentication;
 			$scope.files          = [];//-->To store all uploaded files
@@ -110,7 +107,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				output = [],      //-->Some informations about files will be stored in this array
 				currentIndex  = 0;//-->To allow uploading multiple files
 
-				for (var i = 0, f; f = files[i]; i++)  {
+				for (var i = 0,f = files[i];i<files.length; i++)  {
 				  currentIndex = i + $scope.files.length;
 				  $scope.files[currentIndex]     = files[i];
 				  $scope.filesName[currentIndex] = $scope.files[currentIndex].name;
