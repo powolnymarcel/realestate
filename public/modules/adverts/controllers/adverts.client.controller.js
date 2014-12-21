@@ -4,18 +4,25 @@
 angular.module('adverts').controller('AdvertsController', ['$scope', '$stateParams', 
 	'$location', 'Authentication', 'Adverts','AdvertsPID','$','includeService',
 	function($scope, $stateParams, $location, Authentication, Adverts,AdvertsPID,$,includeService) {
-		$scope.authentication = Authentication;
+		
 
-		//To disable by defaut all form elements inside 'form'
-		$('#form :input').prop('disabled', true);
-		$scope.showAdverts = {url:'modules/adverts/views/show-advert.client.view.html', 
-							 visible:false};
+
+
+		$scope.init = function () {
+			$scope.authentication = Authentication;
+			$scope.files          = [];//-->To store all uploaded files
+			$scope.filesName      = [];//-->To store all uploaded files names
+			//To disable by defaut all form elements inside 'form'
+			$('#form :input').prop('disabled', true);
+			$scope.showAdverts = {url:'modules/adverts/views/show-advert.client.view.html', 
+								 visible:false};
+		};
 
 		// Create new Advert
 		$scope.create = function() {
 			// Create new Advert object
-			var myid  = $scope.selected_;
-			myid      = myid.replace('-','');
+			var myid  = ($scope.selectedID_).replace('-','');
+
 			var advert = new Adverts ({
 				name: this.name,
 				pid:myid,
@@ -28,9 +35,9 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 				titre:this.titre,
 				description:this.description,
-				surface:this.surface,
+				surface: $scope.selectedArea_,
 				prix:this.prix,
-				photo:this.photo
+				photo:$scope.filesName
 			});
 
 			// Redirect after save
@@ -91,6 +98,43 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			$scope.advert = AdvertsPID.get({ 
 				advertPID: response.pid
 			});
+		};
+
+		//Load files uploaded from the brower
+		$scope.loadFiles = function () {
+
+			function handleFileSelect(evt) {
+				evt.stopPropagation();
+				evt.preventDefault();
+				var files = evt.dataTransfer.files, //-->files is a FileList of File objects.
+				output = [],      //-->Some informations about files will be stored in this array
+				currentIndex  = 0;//-->To allow uploading multiple files
+
+				for (var i=0,f;f = files[i]; i++) {
+				  currentIndex = i + $scope.files.length;
+				  $scope.files[currentIndex]     = files[i];
+				  $scope.filesName[currentIndex] = $scope.files[currentIndex].name;
+			      output.push('<li><strong>', escape(f.name),'</strong></li>');
+
+				  console.log('-->Image : '+$scope.files.length);
+			    }
+			    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+			    
+			    //Dislay files names stored
+			    for (var i=0;i<$scope.files.length;i++) {
+			    	console.log('-->Stored : '+$scope.filesName[i]);
+			    };
+			}
+
+			function handleDragOver(evt) {
+				evt.stopPropagation();
+				evt.preventDefault();
+				evt.dataTransfer.dropEffect = 'copy'; 
+			}
+
+			var dropZone = document.getElementById('dropzone');
+			dropZone.addEventListener('dragover', handleDragOver, false);
+			dropZone.addEventListener('drop', handleFileSelect, false);
 		};
 	}
 ]);

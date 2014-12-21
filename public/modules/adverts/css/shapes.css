@@ -43,3 +43,12 @@
     width: 450px; 
     height:250px;
 }
+
+.dragdrop{
+    margin: 5px 0;
+    height: 100px;
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: white;
+}

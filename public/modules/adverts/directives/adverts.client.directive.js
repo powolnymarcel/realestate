@@ -46,10 +46,11 @@ angular.module('adverts')
 					.classed('buildings',1)
 					.attr('d', function(d){return d.toSvgPath();})
 					.on('click', function(d, i){
-			          	scope.selected_ = d.getId();
+			          	scope.selectedID_   = d.getId();
+			          	scope.selectedArea_ = d.getArea();
 			          	scope.$apply();
 			          	//Select to the database with the corresponding id and verify if 
-			          	//it does not already used
+			          	//it does not already be used
 			          	
 						$http.get('/adverts/pidroute/' + d.getId().replace('-',''))
 						.success(function (advert) {
@@ -106,6 +107,7 @@ angular.module('adverts')
 	// When User Fills Out Form Completely
 	$('form').keyup(function(){
 	$('input[type=submit]').removeAttr('disabled');
+	
 	});
 
 

@@ -1,4 +1,4 @@
-<section data-ng-controller="AdvertsController">
+<section data-ng-controller="AdvertsController" data-ng-init="init()">
     <div class="page-header">
         <h1>New Advert</h1>
     </div>
@@ -28,15 +28,15 @@
             </div>
              </fieldset>
 
-             <fieldset> <legend>Vos informations </legend>
+             <fieldset> <legend>Vos informations  </legend>
                 <div class="form-group">
-                  <label for="nom" class="col-sm-4 control-label">Votre nom</label>
+                  <label for="nom" class="col-sm-4 control-label">Nom</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" id="nom" data-ng-model="nom" placeholder="nom">
                   </div>
                 </div>
                   <div class="form-group">
-                  <label for="nom" class="col-sm-4 control-label">Votre prenom</label>
+                  <label for="nom" class="col-sm-4 control-label">Prénom</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" id="prenom" data-ng-model="prenom" placeholder="prenom">
                   </div>
@@ -58,7 +58,7 @@
 
              <fieldset> <legend> Votre annonce</legend>
                <div class="form-group">
-                  <label for="titre" class="col-sm-4 control-label">Titre de l'annonce</label>
+                  <label for="titre" class="col-sm-4 control-label">Titre</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" id="titre" data-ng-model="titre" placeholder="titre de  l'annonce">
                   </div>
@@ -79,16 +79,9 @@
                 </div>
 
                  <div class="form-group">
-                  <label for="description" class="col-sm-4 control-label">Description de l'annonce</label>
+                  <label for="description" class="col-sm-4 control-label">Description</label>
                   <div class="col-sm-8">
                     <textarea class="form-control" rows="3" data-ng-model="description"></textarea>
-                  </div>
-                </div>
-
-               <div class="form-group">
-                  <label for="surface" class="col-sm-4 control-label">Surface</label>
-                  <div class="col-sm-8">
-                    <input type="number" class="form-control" id="surface" placeholder="Surface en m2" data-ng-model="surface">
                   </div>
                 </div>
 
@@ -100,10 +93,12 @@
                 </div>
 
                <div class="form-group">
-                  <label for="file" class="col-sm-4 control-label">Photos</label>
+                  <label for="dropzone" class="col-sm-4 control-label">Photos</label>
                   <div class="col-sm-8">
-                    <!--<input type="file" id="photo" data-ng-model="photo" multiple>-->
-                    <input type="file" id="file"/>
+                    <div id="dropzone" class="dragdrop" data-ng-init="loadFiles()">
+                       Drop files here...
+                    </div>
+                    <output id="list">OUPUT</output>
                   </div>
                 </div>
                 

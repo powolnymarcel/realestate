@@ -5,7 +5,8 @@ angular.module('adverts')
     function($http,$) {
  
         this.includeAdvert = function(advert) {
-            document.getElementById('advert').innerHTML='<h1> '+advert.description+'</h1> <h2>Hello</h2>';
+            document.getElementById('advert').innerHTML=
+            '<h1> '+advert.description+'</h1> <h2>Hello</h2>';
         };
     }
 ]);
