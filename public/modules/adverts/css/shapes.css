@@ -53,6 +53,11 @@
     background: white;
 }
 
+.image{   
+    width: 100px; 
+    height: 100px;
+}
+
 .MapKey{
 
     margin-left: 70px;
