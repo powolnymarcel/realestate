@@ -13,6 +13,26 @@ angular.module('adverts')
                       '</div>';
             document.getElementById('advert').innerHTML= docs;
         };
+
+
+
+        this.sendFile = function(file, uploadUrl){
+            var data = new FormData();
+            data.append('file', file);
+            $http.post(uploadUrl, data, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            })
+            .success(function(){
+                console.log('sendFile function performed send with success.');
+            })
+            .error(function(){
+                console.log('sendFile function generate error.No sending file.');
+            });
+        };
+
+
+
     }
 ]);
 
