@@ -9,9 +9,8 @@ angular.module('adverts').run(['Menus',
 		Menus.addSubMenuItem('topbar', 'adverts', 'New Advert', 'adverts/create');
 		*/
 
-		Menus.addMenuItem('topbar', 'Create advert', 'adverts/create', 'item', '/adverts/create');
-		Menus.addMenuItem('topbar', 'List adverts', 'adverts', 'item', '/adverts');
-
+		Menus.addMenuItem('topbar', 'New advert', 'adverts/create', 'item', '/adverts/create');
+        Menus.addMenuItem('topbar', 'List adverts', 'adverts', 'item', '/adverts');
 
 	}
 ]);
