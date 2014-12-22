@@ -15,6 +15,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 								 visible:false};
 		};
 
+/*
 		$scope.zoom = function () {
 
 			$(document).ready(function() {
@@ -54,6 +55,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				
 			});
 		}
+*/
 
 		// Create new Advert
 		$scope.create = function() {
