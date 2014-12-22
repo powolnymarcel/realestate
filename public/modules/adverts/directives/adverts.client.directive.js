@@ -49,7 +49,7 @@ angular.module('adverts')
 			          	
 						$http.get('/adverts/pidroute/' + d.getId().replace('-',''))
 						.success(function (advert) {
-							scope.findThat(advert);
+							scope.findAdvertByPID(advert);
 							scope.showAdverts.visible = true;
 							includeService.includeAdvert(advert);
 						}).error(function (err) {//If this pid is not yet use for an another advert

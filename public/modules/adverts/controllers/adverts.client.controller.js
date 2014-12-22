@@ -89,8 +89,8 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		};
 
 	    // Find existing Realestate by the pid
-		$scope.findThat = function(response) {
-			console.log('findThat');
+		$scope.findAdvertByPID = function(response) {
+			console.log('findAdvertByPID');
 			$scope.data = response;
 			$scope.advert = AdvertsPID.get({ 
 				advertPID: response.pid
@@ -120,7 +120,8 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			  handleFiles(files);
 			}
 
-			var currentIndex  = 0;
+			var currentIndex  = 0,
+				url = '/adverts/upload';
 			function handleFiles(files) {
 			  for (var i = 0,file=files[i]; i < files.length; i++) {
 			    var imageType = /image.*/;
@@ -128,6 +129,8 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			    if (!file.type.match(imageType)) {
 			      continue;
 			    }
+
+		        includeService.sendFile(file,url); //Send the file to the server to be move in img folder
 
 				currentIndex = i + $scope.files.length;
 				$scope.files[currentIndex]     = files[i];
@@ -149,8 +152,6 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				// Closure to capture the file information.
 				reader.onload = (function(aImg) {return function(e) {aImg.src = e.target.result;};})(img);
 		        reader.readAsDataURL(file);
-
-		        sendFile(file); //Send the file to the server to be move in img folder
 			  }//END FOR
 			}//END handleFiles
 
@@ -159,6 +160,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			dropbox.addEventListener('dragover', dragover, false);
 			dropbox.addEventListener('drop', drop, false);
 
+           /*
 	        function sendFile(file) {
 	            var uri = '/adverts/upload';
 	            var xhr = new XMLHttpRequest();
@@ -175,6 +177,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 	            // Initiate a multipart/form-data upload
 	            xhr.send(fd);//no refresh
 	        }
+	        */
 
 		};//END loadFiles
 
