@@ -66,9 +66,6 @@
  *  plugin css
  */
 
-#pluginDetails{
-    margin-top: 50px;
-}
 
 #imgContainer{
     width: 980px;
@@ -76,9 +73,7 @@
 }
 
 #positionButtonDiv{
-    /* Fallback for web browsers that doesn't support RGBa */
     background: rgb(58, 56, 63);
-    /* RGBa with 0.6 opacity */
     background: rgba(58, 56, 63, 0.8);  
     border: solid 1px #100000;
     color:#FFFFFF;
