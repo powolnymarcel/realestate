@@ -23,9 +23,9 @@
     fill: rgba(208, 245, 208, 1);
 }
 
-.fixed {
+#contenu {
     position: fixed;
-    margin-left: 450px;
+    margin-left:480px;
 }
 
 
@@ -58,18 +58,19 @@
 
 .MapKey{
 
-    margin-left: 70px;
+    margin-left: 65px;
 }
 
 
 /**
  *  plugin css
- */
-
+ 
+**/
 
 #imgContainer{
-    width: 980px;
+    width: 700px;
     height: 500px;
+    margin-left: 30px;
 }
 
 #positionButtonDiv{
@@ -91,6 +92,7 @@
 
 .positionMapClass area{
     cursor: pointer;
+    margin-left:40px;
 }
 
 .zoomButton{
@@ -98,8 +100,5 @@
     cursor: pointer;
 }
 
-.zoomableContainer{
-    background-image: url("/modules/adverts/img/transparent.png");
-}
 
 
