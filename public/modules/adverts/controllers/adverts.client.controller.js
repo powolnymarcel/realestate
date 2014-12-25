@@ -4,7 +4,7 @@
 angular.module('adverts').controller('AdvertsController', ['$scope', '$stateParams', 
 	'$location', 'Authentication', 'Adverts','AdvertsPID','$','includeService',
 	function($scope, $stateParams, $location, Authentication, Adverts,AdvertsPID,$,includeService) {
-		
+	$scope.authentication = Authentication;
 		$scope.init = function () {
 			$scope.authentication = Authentication;
 			$scope.files          = [];//-->To store all uploaded files
