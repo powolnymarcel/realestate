@@ -102,3 +102,16 @@
 
 
 
+#advert {
+    padding-top: 20px;
+    left: 555px;
+    top:  170px;
+    position: fixed;
+    width: 320px;
+    height: 150px;
+    background: none repeat scroll 0 0 #eee;
+    border-radius: 5px;
+    text-align: left;
+    color: #369;
+    
+}

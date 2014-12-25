@@ -73,7 +73,7 @@
 		      'height' : "100%",
 		      'easing' : "smartZoomEasing",
 		      'initCallback' : null,
-		      'maxScale' : 3,
+		      'maxScale' : 8,
 		      'dblClickMaxScale' : 1.8,
 		      'mouseEnabled' : true,
 		      'scrollEnabled' : true,

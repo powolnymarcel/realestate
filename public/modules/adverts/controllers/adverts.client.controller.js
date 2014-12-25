@@ -42,7 +42,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			    }
 
 			    function zoomButtonClickHandler(e){
-			    	var scaleToAdd = 0.8;
+			    	var scaleToAdd = 1.2;
 					if(e.target.id === 'zoomOutButton')
 						scaleToAdd = -scaleToAdd;
 					$('#imgContainer').smartZoom('zoom', scaleToAdd);

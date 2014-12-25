@@ -3,7 +3,7 @@
         <h1>New Advert</h1>
     </div>
 
-    <div id="advert" class="row boxes jumbotron" data-ng-include="showAdverts.url" data-ng-show="showAdverts.visible"></div>
+    <div id="advert" data-ng-include="showAdverts.url" data-ng-show="showAdverts.visible"></div>
 
     <div class="col-md-5 jumbotron">
          <form id="form" class="form-horizontal" enctype="multipart/form-data" data-ng-submit="create()" novalidate>
