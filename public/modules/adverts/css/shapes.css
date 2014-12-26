@@ -115,3 +115,14 @@
     color: #369;
     
 }
+
+.titre-annonce{
+    font-weight: bold;
+    font-size: 18px;
+}
+.prix-annonce{
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+
+}
