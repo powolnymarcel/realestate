@@ -23,11 +23,19 @@
                     <span class="prix-annonce"> €</span>
                     <br/>
                     <br/>
-                    <small>
-                      <span class="pull-right" data-ng-bind="advert.created | date:'medium'"></span>
-                    </small>
                 </div>
                 </a>
+                <small>
+                      <span class="pull-left" data-ng-bind="advert.created | date:'medium'"></span>
+                    </small>
+                <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == advert.user._id))">
+                        <a class="btn btn-primary" href="/#!/adverts/{{advert._id}}/edit">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <a class="btn btn-primary" data-ng-click="remove();">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                </div>
             </div>
         </div>
     

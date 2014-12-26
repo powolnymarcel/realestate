@@ -7,19 +7,30 @@
 <div class="row">
 
 	  <div class="col-md-5">
-			<div class="row jumbotron" data-ng-repeat="advert in adverts" >
-			 <a data-ng-href="#!/adverts/{{advert._id}} ">
-			    <div class="col-sm-3 text-info">
-			        <img data-ng-src="modules/adverts/img/{{advert.photo}}" alt="Photo of {{advert.photo}}" class="img-thumbnail">
-			    </div>
+			<div class="row jumbotron" data-ng-repeat="advert in adverts">
+                <a data-ng-href="#!/adverts/{{advert._id}} ">
+                <div class="col-sm-3 text-info">
+                    <img data-ng-src="modules/adverts/img/{{advert.photo}}" alt="Photo of {{advert.photo}}" class="img-thumbnail">
+                </div>
 
-			    <div class="col-sm-8 text-info">
-			        <span data-ng-bind="advert.region"></span> <br/>
-			        <span data-ng-bind="advert.titre"></span> 
-			        <span data-ng-bind="advert.description"></span>
-			    </div>
-			  </a>
-			</div>
+                <div class="col-sm-8 text-info">
+                    <span class="titre-annonce" data-ng-bind="advert.titre"></span>
+                    <br/>
+                    <span data-ng-bind="advert.region"></span>
+                    <br/>
+                    <span data-ng-bind="advert.surface"></span><span> M²</span>
+                    <br/>
+                    <br/>
+                    <span class="prix-annonce"data-ng-bind="advert.prix"></span>
+                    <span class="prix-annonce"> €</span>
+                    <br/>
+                    <br/>
+                </div>
+                </a>
+                <small>
+                      <span class="pull-right" data-ng-bind="advert.created | date:'medium'"></span>
+                    </small>
+            </div>
 		    <!--
 		    <div class="list-group">
 		        <a data-ng-repeat="advert in adverts" data-ng-href="#!/adverts/{{advert._id}}" class="list-group-item jumbotron" >
