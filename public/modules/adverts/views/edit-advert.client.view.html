@@ -2,14 +2,14 @@
     <div class="page-header">
         <h1>Edit Advert</h1>
     </div>
-    <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="update()" novalidate>
+    <div class="col-md-6">
+        <form class="form-horizontal" data-ng-submit="update()" novalidate >
               <fieldset>
                 <legend></legend>
                    <fieldset> <legend>Localisation</legend>
                     <div class="form-group">
-                        <label for="region" class="col-sm-2 control-label">Region</label>
-                        <div class="col-sm-10">
+                        <label for="region" class="col-sm-3 control-label">Region</label>
+                        <div class="col-sm-8">
                             <select class="form-control" id="region" data-ng-model="advert.region">
                                 <option value="Alsace">Alsace</option>
                                 <option value="Aquitaine">Aquitaine</option>
@@ -20,8 +20,8 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="codepostale" class="col-sm-2 control-label">Code postale</label>
-                      <div class="col-sm-10">
+                      <label for="codepostale" class="col-sm-3 control-label">Code postale</label>
+                      <div class="col-sm-8">
                         <input type="number" class="form-control" id="codepostale" data-ng-model="advert.codepostale" placeholder="">
                       </div>
                     </div>
@@ -29,26 +29,26 @@
 
                      <fieldset> <legend>Vos informations </legend>
                         <div class="form-group">
-                          <label for="nom" class="col-sm-2 control-label">Votre nom</label>
-                          <div class="col-sm-10">
+                          <label for="nom" class="col-sm-3 control-label">Votre nom</label>
+                          <div class="col-sm-8">
                             <input type="text" class="form-control" id="nom" data-ng-model="advert.nom" placeholder="nom">
                           </div>
                         </div>
                           <div class="form-group">
-                          <label for="nom" class="col-sm-2 control-label">Votre prenom</label>
-                          <div class="col-sm-10">
+                          <label for="nom" class="col-sm-3 control-label">Votre prenom</label>
+                          <div class="col-sm-8">
                             <input type="text" class="form-control" id="prenom" data-ng-model="advert.prenom" placeholder="prenom">
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="email" class="col-sm-2 control-label">Email</label>
-                          <div class="col-sm-10">
+                          <label for="email" class="col-sm-3 control-label">Email</label>
+                          <div class="col-sm-8">
                             <input type="email" class="form-control" id="email" data-ng-model="advert.email" placeholder="email">
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="tel" class="col-sm-2 control-label">Téléphone</label>
-                          <div class="col-sm-10">
+                          <label for="tel" class="col-sm-3 control-label">Téléphone</label>
+                          <div class="col-sm-8">
                             <input type="number" class="form-control" id="tel" data-ng-model="advert.tel" placeholder="">
                           </div>
                         </div>
@@ -57,15 +57,15 @@
 
                      <fieldset> <legend> Votre annonce</legend>
                        <div class="form-group">
-                          <label for="titre" class="col-sm-2 control-label">Titre de l'annonce</label>
-                          <div class="col-sm-10">
+                          <label for="titre" class="col-sm-3 control-label">Titre de l'annonce</label>
+                          <div class="col-sm-8">
                             <input type="text" class="form-control" id="titre" data-ng-model="advert.titre" placeholder="titre de  l'annonce">
                           </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="type" class="col-sm-2 control-label">Type de bien</label>
-                            <div class="col-sm-10">
+                            <label for="type" class="col-sm-3 control-label">Type de bien</label>
+                            <div class="col-sm-8">
                                 <select class="form-control" id="type" data-ng-model="advert.type">
                                     <option value="appartement">Appartement</option>
                                     <option value="maison">Maison</option>
@@ -78,29 +78,29 @@
                         </div>
 
                          <div class="form-group">
-                          <label for="description" class="col-sm-2 control-label">Description de l'annonce</label>
-                          <div class="col-sm-10">
+                          <label for="description" class="col-sm-3 control-label">Description de l'annonce</label>
+                          <div class="col-sm-8">
                             <textarea class="form-control" rows="3" data-ng-model="advert.description"></textarea>
                           </div>
                         </div>
 
                        <div class="form-group">
-                          <label for="surface" class="col-sm-2 control-label">Surface</label>
-                          <div class="col-sm-10">
+                          <label for="surface" class="col-sm-3 control-label">Surface</label>
+                          <div class="col-sm-8">
                             <input type="number" class="form-control" id="prix" placeholder="Surface" data-ng-model="advert.surface">
                           </div>
                         </div>
 
                        <div class="form-group">
-                          <label for="prix" class="col-sm-2 control-label">Prix</label>
-                          <div class="col-sm-10">
+                          <label for="prix" class="col-sm-3 control-label">Prix</label>
+                          <div class="col-sm-8">
                             <input type="number" class="form-control" id="prix" placeholder="prix" data-ng-model="advert.prix">
                           </div>
                         </div>
                      </fieldset>
 
                     <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
+                      <div class="col-sm-offset-3 col-sm-8">
                         <input type="submit" value="Update" class="btn btn-default">
                       </div>
                     </div>   
@@ -110,4 +110,34 @@
                 </fieldset>
         </form>
     </div>
+    <div id="contenu" >
+        <div id="imgContainer" data-ng-init="zoom()">
+  
+              <map name="positionMap" class="positionMapClass">
+                <area id="topPositionMap" shape="rect" coords="20,0,40,20" title="move up" alt="move up"/>
+                <area id="leftPositionMap" shape="rect" coords="0,20,20,40" title="move left" alt="move left"/>
+                <area id="rightPositionMap" shape="rect" coords="40,20,60,40" title="move right" alt="move right"/>
+                <area id="bottomPositionMap" shape="rect" coords="20,40,40,60" title="move bottom" alt="move bottom"/>
+              </map>
+              
+              <td><img class="MapKey" src="/modules/adverts/img/aminities.png"/>  Amenities  </td>
+              <td><img class="MapKey" src="/modules/adverts/img/buildings.png" />  Buildings  </td>
+              <td><img class="MapKey" src="/modules/adverts/img/naturals.png" />  Naturals  </td>
+              <td><img class="MapKey" src="/modules/adverts/img/roads.png" />  Roads  </td>  
+
+        </div>
+        <div id="positionButtonDiv">
+          <p>Zoom : 
+            <span>
+              <img id="zoomInButton" class="zoomButton" src="/modules/adverts/img/zoomIn.png" title="zoom in" alt="zoom in" />
+              <img id="zoomOutButton" class="zoomButton" src="/modules/adverts/img/zoomOut.png" title="zoom out" alt="zoom out" />
+            </span>
+          </p>
+          <p>
+            <span class="positionButtonSpan">
+              <img src="/modules/adverts/img/position.png" usemap="#positionMap" />
+            </span> 
+          </p>
+        </div>
+      </div>
 </section>
