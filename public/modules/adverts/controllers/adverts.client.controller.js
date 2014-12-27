@@ -21,6 +21,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			$(document).ready(function() {
 
 				function moveButtonClickHandler(e){
+					$('#ptr').remove();
 			    	var pixelsToMoveOnX = 0;
 					var pixelsToMoveOnY = 0;
 			
@@ -42,12 +43,14 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			    }
 
 			    function zoomButtonClickHandler(e){
+			    	$('#ptr').remove();
 			    	var scaleToAdd = 1.2;
 					if(e.target.id === 'zoomOutButton')
 						scaleToAdd = -scaleToAdd;
 					$('#imgContainer').smartZoom('zoom', scaleToAdd);
 			    }
 				
+
 				$('#imgContainer').smartZoom({'containerClass':'zoomableContainer'});
 				
 				$('#topPositionMap,#leftPositionMap,#rightPositionMap,#bottomPositionMap').bind('click', moveButtonClickHandler);

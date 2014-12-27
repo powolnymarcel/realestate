@@ -61,6 +61,13 @@
     margin-left: 65px;
 }
 
+#ptr{
+    position: fixed;
+    left:110px;
+    top: 110px;
+    z-index: 1;
+}
+
 
 /**
  *  plugin css
