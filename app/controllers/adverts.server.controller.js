@@ -118,10 +118,10 @@ exports.hasAuthorization = function(req, res, next) {
 // we need the fs module for moving the uploaded files
 exports.fileUpload = function(req, res) {
     // get the temporary location of the file
-    var tmp_path = req.files.thumbnail.path;
+    var tmp_path = req.files.userFile.path;
     //set where the file should actually exists 
     //in this case it is in the "images" directory
-    var target_path = '/public/modules/adverts/img/users/' + req.files.thumbnail.name;
+    var target_path = '/public/modules/adverts/img/users/' + req.files.userFile.name;
     // move the file from the temporary location to the intended location
     fs.rename(tmp_path, target_path, function(err) {
         if (err) throw err;
@@ -129,7 +129,7 @@ exports.fileUpload = function(req, res) {
         //upload dir does not get filled with unwanted files
         fs.unlink(tmp_path, function() {
             if (err) throw err;
-            res.send('File uploaded to: ' + target_path + ' - ' + req.files.thumbnail.size + ' bytes');
+            res.send('File uploaded to: ' + target_path + ' - ' + req.files.userFile.size + ' bytes');
         });
     });
 };

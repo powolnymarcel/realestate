@@ -180,7 +180,6 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				
 				currentIndex = i + $scope.filesName.length;
 				$scope.filesName[currentIndex] = file.name;
-
 				for (i=0;i<$scope.filesName.length;i++) {
 			    	console.log('-->Stored : '+$scope.filesName[i]);
 			    }
@@ -197,6 +196,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				reader.onload = (function(aImg) {
 					return function(e) {aImg.src = e.target.result;
 						$scope.files.push(e.target.result);
+						//console.log(' path : '+e.target.result.path);
 					};})(img);
 		        reader.readAsDataURL(file);
 			  }//END FOR
