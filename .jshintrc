@@ -1,4 +1,5 @@
 {
+
 	"node": true, // Enable globals available when code is running inside of the NodeJS runtime environment.
 	"browser": true, // Standard browser globals e.g. `window`, `document`.
 	"esnext": true, // Allow ES.next specific features such as `const` and `let`.
@@ -14,10 +15,12 @@
 	"regexp": true, // Prohibit `.` and `[^...]` in regular expressions.
 	"undef": true, // Require all non-global variables be declared before they are used.
 	"unused": false, // Warn unused variables.
-	"strict": true, // Require `use strict` pragma in every file.
+	"strict": false, // Require `use strict` pragma in every file.
 	"trailing": true, // Prohibit trailing whitespaces.
 	"smarttabs": false, // Suppresses warnings about mixed tabs and spaces
 	"globals": { // Globals variables.
+	    "$": false,
+        "jQuery": false,
 		"jasmine": true,
 		"angular": true,
 		"ApplicationConfiguration": true

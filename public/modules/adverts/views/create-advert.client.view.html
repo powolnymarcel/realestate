@@ -3,7 +3,7 @@
         <h1>New Advert</h1>
     </div>
 
-    <div id="advert" class="row boxes jumbotron" data-ng-include="showAdverts.url" data-ng-show="showAdverts.visible"></div>
+    <div id="advert" data-ng-include="showAdverts.url" data-ng-show="showAdverts.visible"></div>
 
     <div class="col-md-5 jumbotron">
          <form id="form" class="form-horizontal" enctype="multipart/form-data" data-ng-submit="create()" novalidate>
@@ -128,36 +128,34 @@
      </form>
     </div>
 
-    <div class="col-md-7 fixed" id="contenu">
-      <div data-ng-init="zoom()">
-        <div id="imgContainer">
-            <map id="imageFullScreen" name="positionMap" class="positionMapClass" style="margin-left:40px;" >
-              <area id="topPositionMap" shape="rect" coords="20,0,40,20" title="move up" alt="move up"/>
-              <area id="leftPositionMap" shape="rect" coords="0,20,20,40" title="move left" alt="move left"/>
-              <area id="rightPositionMap" shape="rect" coords="40,20,60,40" title="move right" alt="move right"/>
-              <area id="bottomPositionMap" shape="rect" coords="20,40,40,60" title="move bottom" alt="move bottom"/>
-            </map>
-            <div>
+      <div id="contenu" >
+        <div id="imgContainer" data-ng-init="zoom()">
+  
+              <map name="positionMap" class="positionMapClass">
+                <area id="topPositionMap" shape="rect" coords="20,0,40,20" title="move up" alt="move up"/>
+                <area id="leftPositionMap" shape="rect" coords="0,20,20,40" title="move left" alt="move left"/>
+                <area id="rightPositionMap" shape="rect" coords="40,20,60,40" title="move right" alt="move right"/>
+                <area id="bottomPositionMap" shape="rect" coords="20,40,40,60" title="move bottom" alt="move bottom"/>
+              </map>
+              
               <td><img class="MapKey" src="/modules/adverts/img/aminities.png"/>  Amenities  </td>
               <td><img class="MapKey" src="/modules/adverts/img/buildings.png" />  Buildings  </td>
               <td><img class="MapKey" src="/modules/adverts/img/naturals.png" />  Naturals  </td>
               <td><img class="MapKey" src="/modules/adverts/img/roads.png" />  Roads  </td>  
-            </div>
-          </div>
-          <div id="positionButtonDiv">
-            <p>Zoom : 
-              <span>
-                <img id="zoomInButton" class="zoomButton" src="/modules/adverts/img/zoomIn.png" title="zoom in" alt="zoom in" />
-                <img id="zoomOutButton" class="zoomButton" src="/modules/adverts/img/zoomOut.png" title="zoom out" alt="zoom out" />
-              </span>
-            </p>
-            <p>
-              <span class="positionButtonSpan">
-                <img src="/modules/adverts/img/position.png" usemap="#positionMap" />
-              </span> 
-            </p>
-          </div>
-        
+
+        </div>
+        <div id="positionButtonDiv">
+          <p>Zoom : 
+            <span>
+              <img id="zoomInButton" class="zoomButton" src="/modules/adverts/img/zoomIn.png" title="zoom in" alt="zoom in" />
+              <img id="zoomOutButton" class="zoomButton" src="/modules/adverts/img/zoomOut.png" title="zoom out" alt="zoom out" />
+            </span>
+          </p>
+          <p>
+            <span class="positionButtonSpan">
+              <img src="/modules/adverts/img/position.png" usemap="#positionMap" />
+            </span> 
+          </p>
+        </div>
       </div>
-    </div>
 </section>

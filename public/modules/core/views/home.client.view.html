@@ -6,20 +6,31 @@
 
 <div class="row">
 
-	  <div class="col-md-5 ">
-			<div class="row jumbotron" data-ng-repeat="advert in adverts" >
-			 <a data-ng-href="#!/adverts/{{advert._id}} ">
-			    <div class="col-sm-3 text-info">
-			        <img data-ng-src="modules/adverts/img/{{advert.photo}}" alt="Photo of {{advert.photo}}" class="img-thumbnail">
-			    </div>
+	  <div class="col-md-5">
+			<div class="row jumbotron" data-ng-repeat="advert in adverts">
+                <a data-ng-href="#!/adverts/{{advert._id}} ">
+                <div class="col-sm-3 text-info">
+                    <img data-ng-src="modules/adverts/img/{{advert.photo}}" alt="Photo of {{advert.photo}}" class="img-thumbnail">
+                </div>
 
-			    <div class="col-sm-8 text-info">
-			        <span data-ng-bind="advert.region"></span> <br/>
-			        <span data-ng-bind="advert.titre"></span> 
-			        <span data-ng-bind="advert.description"></span>
-			    </div>
-			  </a>
-			</div>
+                <div class="col-sm-8 text-info">
+                    <span class="titre-annonce" data-ng-bind="advert.titre"></span>
+                    <br/>
+                    <span data-ng-bind="advert.region"></span>
+                    <br/>
+                    <span data-ng-bind="advert.surface"></span><span> M²</span>
+                    <br/>
+                    <br/>
+                    <span class="prix-annonce"data-ng-bind="advert.prix"></span>
+                    <span class="prix-annonce"> €</span>
+                    <br/>
+                    <br/>
+                </div>
+                </a>
+                <small>
+                      <span class="pull-right" data-ng-bind="advert.created | date:'medium'"></span>
+                    </small>
+            </div>
 		    <!--
 		    <div class="list-group">
 		        <a data-ng-repeat="advert in adverts" data-ng-href="#!/adverts/{{advert._id}}" class="list-group-item jumbotron" >
@@ -41,15 +52,35 @@
 		    </div>
 		</div>
 
-		<div class="col-md-8 fixed" id="contenu">
-			<map style="margin-left:40px;"></map>
-			<div>
-	          <td><img class="MapKey" src="/modules/adverts/img/aminities.png"/>  Amenities  </td>
-	          <td><img class="MapKey" src="/modules/adverts/img/buildings.png" />  Buildings  </td>
-	          <td><img class="MapKey" src="/modules/adverts/img/naturals.png" />  Naturals  </td>
-	          <td><img class="MapKey" src="/modules/adverts/img/roads.png" />  Roads  </td>  
-	      	</div>
+		<div id="contenu" >
+        <div id="imgContainer" data-ng-init="zoom()">
+  
+              <map name="positionMap" class="positionMapClass">
+                <area id="topPositionMap" shape="rect" coords="20,0,40,20" title="move up" alt="move up"/>
+                <area id="leftPositionMap" shape="rect" coords="0,20,20,40" title="move left" alt="move left"/>
+                <area id="rightPositionMap" shape="rect" coords="40,20,60,40" title="move right" alt="move right"/>
+                <area id="bottomPositionMap" shape="rect" coords="20,40,40,60" title="move bottom" alt="move bottom"/>
+              </map>
+              
+              <td><img class="MapKey" src="/modules/adverts/img/aminities.png"/>  Amenities  </td>
+              <td><img class="MapKey" src="/modules/adverts/img/buildings.png" />  Buildings  </td>
+              <td><img class="MapKey" src="/modules/adverts/img/naturals.png" />  Naturals  </td>
+              <td><img class="MapKey" src="/modules/adverts/img/roads.png" />  Roads  </td>  
 
-		</div>
+        </div>
+        <div id="positionButtonDiv">
+          <p>Zoom : 
+            <span>
+              <img id="zoomInButton" class="zoomButton" src="/modules/adverts/img/zoomIn.png" title="zoom in" alt="zoom in" />
+              <img id="zoomOutButton" class="zoomButton" src="/modules/adverts/img/zoomOut.png" title="zoom out" alt="zoom out" />
+            </span>
+          </p>
+          <p>
+            <span class="positionButtonSpan">
+              <img src="/modules/adverts/img/position.png" usemap="#positionMap" />
+            </span> 
+          </p>
+        </div>
+      </div>
 </div>
 </section>

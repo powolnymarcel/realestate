@@ -5,7 +5,7 @@ angular.module('adverts')
 	function ($http,$location,shapes,d3,Adverts,AdvertsPID,$,includeService){
 	
 	function drawShapes(scope,element) 
-	{			
+	{
 
 		$http.get('/modules/adverts/data/data.json').success(function(data) 
 		{
@@ -41,6 +41,8 @@ angular.module('adverts')
 					.classed('buildings',1)
 					.attr('d', function(d){return d.toSvgPath();})
 					.on('click', function(d, i){
+
+
 			          	scope.selectedID_   = d.getId();
 			          	scope.selectedArea_ = d.getArea();
 			          	scope.$apply();
@@ -51,6 +53,7 @@ angular.module('adverts')
 						.success(function (advert) {
 							scope.findAdvertByPID(advert);
 							scope.showAdverts.visible = true;
+							$('#form :input').prop('disabled', true);
 							includeService.includeAdvert(advert);
 						}).error(function (err) {//If this pid is not yet use for an another advert
 							scope.showAdverts.visible = false;
@@ -58,6 +61,18 @@ angular.module('adverts')
 							$('#form :input').prop('disabled', false);					       	
 						});
 			        });
+				
+				$('.buildings').click(function(e){
+
+				    var left = e.clientX-10;
+				    var top = e.clientY-40;
+
+				    $('#ptr').remove();
+				    $('#positionButtonDiv').append( '<p id ="ptr" ><img src="/modules/adverts/img/pointeur.png"/></p>');
+			          	$('#ptr').css('top',top);
+			          	$('#ptr').css('left',left);
+
+				});
 
 				//Drawroads
 				container.selectAll('.roads')
@@ -104,6 +119,7 @@ angular.module('adverts')
 	$('input[type=submit]').removeAttr('disabled');
 
 	});
+
 
 
 	return {

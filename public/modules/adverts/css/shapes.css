@@ -23,9 +23,9 @@
     fill: rgba(208, 245, 208, 1);
 }
 
-.fixed {
+#contenu {
     position: fixed;
-    margin-left: 450px;
+    margin-left:480px;
 }
 
 
@@ -58,18 +58,26 @@
 
 .MapKey{
 
-    margin-left: 70px;
+    margin-left: 65px;
+}
+
+#ptr{
+    position: fixed;
+    left:110px;
+    top: 110px;
+    z-index: 1;
 }
 
 
 /**
  *  plugin css
- */
-
+ 
+**/
 
 #imgContainer{
-    width: 980px;
+    width: 700px;
     height: 500px;
+    margin-left: 30px;
 }
 
 #positionButtonDiv{
@@ -91,6 +99,7 @@
 
 .positionMapClass area{
     cursor: pointer;
+    margin-left:40px;
 }
 
 .zoomButton{
@@ -98,8 +107,30 @@
     cursor: pointer;
 }
 
-.zoomableContainer{
-    background-image: url("/modules/adverts/img/transparent.png");
+
+
+#advert {
+    padding-top: 20px;
+    left: 555px;
+    top:  170px;
+    position: fixed;
+    width: 320px;
+    height: 150px;
+    background: none repeat scroll 0 0 rgba(238,238,238,0.3);
+    border-radius: 5px;
+    text-align: left;
+    color: #369;
+    z-index: 1;
+    
 }
 
+.titre-annonce{
+    font-weight: bold;
+    font-size: 18px;
+}
+.prix-annonce{
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
 
+}
