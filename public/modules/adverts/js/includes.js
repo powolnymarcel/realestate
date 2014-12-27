@@ -16,31 +16,37 @@ angular.module('adverts')
 
 
 
-        this.sendFile = function(file, uploadUrl){
-
-
-            var msg = 'hello world';
-            $http.post('/adverts/upload', msg).
-              success(function(data, status, headers, config) {
-                console.log('success');
-              }).
-              error(function(data, status, headers, config) {
-                console.log(status);
-              });
-            
-            /*
+        this.sendHTTPPOSTFile = function(file, uploadUrl){
+            console.log('$http.post sends to '+uploadUrl);
             var data = new FormData();
-            data.append('file', file);
+            data.append('userFile', file);
             $http.post(uploadUrl, data, {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             })
             .success(function(){
-                console.log('sendFile function performed send with success.');
+                console.log('sendHTTPPOSTFile function performed send with success.');
             })
             .error(function(){
-                console.log('sendFile function generate error.No sending file.');
-            });*/
+                console.log('sendHTTPPOSTFile function generate error. File is not being sent .');
+            });
+        };
+
+        this.sendXMLHTTPFile = function(file, uploadUrl) {
+                var xhr = new XMLHttpRequest();
+                var fd = new FormData();
+                
+                xhr.open('POST',uploadUrl,true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        // Handle response.
+                        console(xhr.responseText); // handle response.
+                    }
+                };
+                fd.append('userFile', file);
+                //Initiate a multipart/form-data upload
+                console.log('XMLHTTPrequest sends file to'+uploadUrl);
+                xhr.send(fd);//no refresh 
         };
 
 

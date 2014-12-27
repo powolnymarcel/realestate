@@ -6,11 +6,10 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 	function($scope, $stateParams, $location, Authentication, Adverts,AdvertsPID,$,includeService) {
 	$scope.authentication = Authentication;
 		$scope.init = function () {
-			$scope.authentication = Authentication;
-			$scope.files          = [];//-->To store all uploaded files
+			$scope.authentication = Authentication; 
+			$scope.files          = [];//-->To store files  for uploading using Document.querySelectorAll()
 			$scope.filesName      = [];//-->To store all uploaded files names
-			//To disable by defaut all form elements inside 'form'
-			$('#form :input').prop('disabled', true);
+			$('#form :input').prop('disabled', true);//-->To disable by defaut all form elements inside 'form'
 			$scope.showAdverts = {url:'modules/adverts/views/show-advert.client.view.html', 
 								 visible:false};
 		};
@@ -55,9 +54,6 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				
 				$('#topPositionMap,#leftPositionMap,#rightPositionMap,#bottomPositionMap').bind('click', moveButtonClickHandler);
   				$('#zoomInButton,#zoomOutButton').bind('click', zoomButtonClickHandler);
-				
-				
-				
 			});
 		};
 
@@ -65,9 +61,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		// Create new Advert
 		$scope.create = function() {
 			// Create new Advert object
-			//includeService.sendFile({msg:'hello word!'},'adverts/upload');
 			var myid  = ($scope.selectedID_).replace('-','');
-
 			var advert = new Adverts ({
 				name: this.name,
 				pid:myid,
@@ -87,8 +81,15 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 			// Redirect after save
 			advert.$save(function(response) {
-				$location.path('adverts/' + response._id);
 
+				//SEND all file to the server to be moved in img folder
+				var uri = '/adverts/upload';
+				for (var i = $scope.files.length - 1; i >= 0; i--) {
+					includeService.sendXMLHTTPFile($scope.files[i], uri);
+					//includeService.sendHTTPPOSTFile($scope.files[i], uri);
+				}
+
+				$location.path('adverts/' + response._id);
 				// Clear form fields
 				$scope.name = '';
 			}, function(errorResponse) {
@@ -166,12 +167,9 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			  var files = dt.files;
 
 			  handleFiles(files);
-			}
+			}//END drop
 
-			var currentIndex  = 0,
-				url = '/adverts/upload';
-
-
+			var currentIndex  = 0;
 			function handleFiles(files) {
 			  for (var i = 0,file=files[i]; i < files.length; i++) {
 			    var imageType = /image.*/;
@@ -179,15 +177,11 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			    if (!file.type.match(imageType)) {
 			      continue;
 			    }
-
-		        includeService.sendFile(file,url); //Send the file to the server to be move in img folder
 				
-				currentIndex = i + $scope.files.length;
-				$scope.files[currentIndex]     = files[i];
-				$scope.filesName[currentIndex] = $scope.files[currentIndex].name;
-				console.log('-->Image : '+$scope.files.length);
+				currentIndex = i + $scope.filesName.length;
+				$scope.filesName[currentIndex] = file.name;
 
-				for (i=0;i<$scope.files.length;i++) {
+				for (i=0;i<$scope.filesName.length;i++) {
 			    	console.log('-->Stored : '+$scope.filesName[i]);
 			    }
 			    
@@ -202,7 +196,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				// Closure to capture the file information.
 				reader.onload = (function(aImg) {
 					return function(e) {aImg.src = e.target.result;
-						//includeService.sendFile(e.target.result,url);
+						$scope.files.push(e.target.result);
 					};})(img);
 		        reader.readAsDataURL(file);
 			  }//END FOR
@@ -211,27 +205,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			var dropbox = document.getElementById('dropbox');
 			dropbox.addEventListener('dragenter', dragenter, false);
 			dropbox.addEventListener('dragover', dragover, false);
-			dropbox.addEventListener('drop', drop, false);
-
-           /*
-	        function sendFile(file) {
-	            var uri = '/adverts/upload';
-	            var xhr = new XMLHttpRequest();
-	            var fd = new FormData();
-	            
-	            xhr.open('POST', uri, true);
-	            xhr.onreadystatechange = function() {
-	                if (xhr.readyState === 4 && xhr.status === 200) {
-	                    // Handle response.
-	                    alert(xhr.responseText); // handle response.
-	                }
-	            };
-	            fd.append('userFile', file);
-	            // Initiate a multipart/form-data upload
-	            xhr.send(fd);//no refresh
-	        }
-	        */
-
+			dropbox.addEventListener('drop', drop, false); 
 		};//END loadFiles
 
 

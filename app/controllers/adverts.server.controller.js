@@ -117,12 +117,11 @@ exports.hasAuthorization = function(req, res, next) {
 
 // we need the fs module for moving the uploaded files
 exports.fileUpload = function(req, res) {
-	console.log('I am fileUpload function and I receive well your request');
     // get the temporary location of the file
     var tmp_path = req.files.thumbnail.path;
     //set where the file should actually exists 
     //in this case it is in the "images" directory
-    var target_path = '/public/modules/adverts/img/' + req.files.thumbnail.name;
+    var target_path = '/public/modules/adverts/img/users/' + req.files.thumbnail.name;
     // move the file from the temporary location to the intended location
     fs.rename(tmp_path, target_path, function(err) {
         if (err) throw err;
