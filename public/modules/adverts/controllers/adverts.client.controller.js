@@ -85,8 +85,8 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				//SEND all file to the server to be moved in img folder
 				var uri = '/adverts/upload';
 				for (var i = $scope.files.length - 1; i >= 0; i--) {
-					includeService.sendXMLHTTPFile($scope.files[i], uri);
-					//includeService.sendHTTPPOSTFile($scope.files[i], uri);
+					//includeService.sendXMLHTTPFile($scope.files[i], uri);
+					includeService.sendHTTPPOSTFile($scope.files[i], uri);
 				}
 
 				$location.path('adverts/' + response._id);
@@ -180,6 +180,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				
 				currentIndex = i + $scope.filesName.length;
 				$scope.filesName[currentIndex] = file.name;
+			    $scope.files.push(file);
 				for (i=0;i<$scope.filesName.length;i++) {
 			    	console.log('-->Stored : '+$scope.filesName[i]);
 			    }
@@ -195,8 +196,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				// Closure to capture the file information.
 				reader.onload = (function(aImg) {
 					return function(e) {aImg.src = e.target.result;
-						$scope.files.push(e.target.result);
-						//console.log(' path : '+e.target.result.path);
+						//$scope.files.push(e.target.result);
 					};})(img);
 		        reader.readAsDataURL(file);
 			  }//END FOR
