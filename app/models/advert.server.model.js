@@ -26,11 +26,6 @@ var AdvertSchema = new Schema({
 	prix: { type: Number ,default:800},
 	photo: {type :String,default:'img.jpg'},
 
-	name: {
-		type: String,
-		default: '',
-		trim: true
-	},
 	created: {
 		type: Date,
 		default: Date.now

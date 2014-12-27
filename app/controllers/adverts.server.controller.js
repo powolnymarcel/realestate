@@ -115,7 +115,6 @@ exports.hasAuthorization = function(req, res, next) {
 	next();
 };
 
-
 // we need the fs module for moving the uploaded files
 exports.fileUpload = function(req, res) {
 	console.log('I am fileUpload function and I receive well your request');
@@ -131,7 +130,7 @@ exports.fileUpload = function(req, res) {
         //upload dir does not get filled with unwanted files
         fs.unlink(tmp_path, function() {
             if (err) throw err;
-            console.log('File uploaded to: ' + target_path + ' - ' + req.files.thumbnail.size + ' bytes');
+            res.send('File uploaded to: ' + target_path + ' - ' + req.files.thumbnail.size + ' bytes');
         });
     });
 };

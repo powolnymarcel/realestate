@@ -60,6 +60,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		// Create new Advert
 		$scope.create = function() {
 			// Create new Advert object
+			//includeService.sendFile({msg:'hello word!'},'adverts/upload');
 			var myid  = ($scope.selectedID_).replace('-','');
 
 			var advert = new Adverts ({
@@ -164,6 +165,8 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 			var currentIndex  = 0,
 				url = '/adverts/upload';
+
+
 			function handleFiles(files) {
 			  for (var i = 0,file=files[i]; i < files.length; i++) {
 			    var imageType = /image.*/;
@@ -173,7 +176,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			    }
 
 		        includeService.sendFile(file,url); //Send the file to the server to be move in img folder
-
+				
 				currentIndex = i + $scope.files.length;
 				$scope.files[currentIndex]     = files[i];
 				$scope.filesName[currentIndex] = $scope.files[currentIndex].name;
@@ -192,7 +195,10 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			    
 			    var reader = new FileReader();
 				// Closure to capture the file information.
-				reader.onload = (function(aImg) {return function(e) {aImg.src = e.target.result;};})(img);
+				reader.onload = (function(aImg) {
+					return function(e) {aImg.src = e.target.result;
+						//includeService.sendFile(e.target.result,url);
+					};})(img);
 		        reader.readAsDataURL(file);
 			  }//END FOR
 			}//END handleFiles

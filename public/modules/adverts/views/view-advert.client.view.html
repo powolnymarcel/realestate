@@ -10,6 +10,9 @@
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
 	</div>
+
+
+
 	<small>
 		<em class="text-muted">
 			Posted on
@@ -17,5 +20,11 @@
 			by
 			<span data-ng-bind="advert.user.displayName"></span>
 		</em>
+		<br />
+		<span data-ng-bind="advert._id"></span> <br/>
+		<span data-ng-bind="advert.pid"></span> <br/>
+		Authen::<span data-ng-bind="authentication.user._id"></span> <br/><br/>
+		Advert::<span data-ng-bind="advert.user._id"></span> <br/><br/>
+
 	</small>
 </section>

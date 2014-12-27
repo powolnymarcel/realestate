@@ -17,6 +17,18 @@ angular.module('adverts')
 
 
         this.sendFile = function(file, uploadUrl){
+
+
+            var msg = 'hello world';
+            $http.post('/adverts/upload', msg).
+              success(function(data, status, headers, config) {
+                console.log('success');
+              }).
+              error(function(data, status, headers, config) {
+                console.log(status);
+              });
+            
+            /*
             var data = new FormData();
             data.append('file', file);
             $http.post(uploadUrl, data, {
@@ -28,7 +40,7 @@ angular.module('adverts')
             })
             .error(function(){
                 console.log('sendFile function generate error.No sending file.');
-            });
+            });*/
         };
 
 
