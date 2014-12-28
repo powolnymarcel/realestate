@@ -7,7 +7,9 @@ var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Advert = mongoose.model('Advert'),
 	_ = require('lodash'),
-	fs = require('fs');
+	fs = require('fs'),
+	multiparty = require('multiparty'), //-->parsing http request with content-type multipart/form-data
+	uuid = require('node-uuid');		//-->universal unique identifier
 
 /**
  * Create a Advert
@@ -117,21 +119,34 @@ exports.hasAuthorization = function(req, res, next) {
 
 // we need the fs module for moving the uploaded files
 exports.fileUpload = function(req, res) {
-    // get the temporary location of the file
-    var tmp_path = req.files.userFile.path;
-    //set where the file should actually exists 
-    //in this case it is in the "images" directory
-    var target_path = '/public/modules/adverts/img/users/' + req.files.userFile.name;
-    // move the file from the temporary location to the intended location
-    fs.rename(tmp_path, target_path, function(err) {
-        if (err) throw err;
-        // delete the temporary file, so that the explicitly set temporary 
-        //upload dir does not get filled with unwanted files
-        fs.unlink(tmp_path, function() {
-            if (err) throw err;
-            res.send('File uploaded to: ' + target_path + ' - ' + req.files.userFile.size + ' bytes');
-        });
-    });
+    var form = new multiparty.Form();
+    form.parse(req, function(err, fields, files) {
+    	console.log('**>tmp_path :: '+files.file[0].path);
+    	// Get the temporary location of the file
+	    var tmp_path = files.file[0].path,
+	    	extIndex = tmp_path.lastIndexOf('.'),
+	        extension = (extIndex < 0) ? '' : tmp_path.substr(extIndex),
+	        fileName = uuid.v4() + extension, //-->Generate a universal unique identifier
+	        target_path = 'public/modules/adverts/img/users/' + fileName;
+	    console.log('I am in top :: '+extension);
+	    // Server side file type checker.
+	    var imgs = ['.png', '.jpg', '.jpeg', '.gif', '.bmp'];
+	    if (imgs.indexOf(extension) == -1) {
+	        fs.unlink(tmp_path);
+	        return res.status(400).send('Unsupported file type.');
+	    }
+	    // move the file from the temporary location to the intended location
+	    fs.rename(tmp_path, target_path, function(err) {
+	        if(err){ 
+	        	console.log('Image is not saved:');
+	        	return res.status(400).send('Image is not saved:');
+	        }
+	 		return res.json(target_path);
+	    });
+	    console.log('**>fileName :: '+target_path);
+	    console.log('I am at bottom:');
+
+	});
 };
 
 

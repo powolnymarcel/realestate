@@ -82,14 +82,14 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			// Redirect after save
 			advert.$save(function(response) {
 
-				//SEND all file to the server to be moved in img folder
+				//SEND all files to the server to be moved in img folder
 				var uri = '/adverts/upload';
 				for (var i = $scope.files.length - 1; i >= 0; i--) {
 					//includeService.sendXMLHTTPFile($scope.files[i], uri);
 					includeService.sendHTTPPOSTFile($scope.files[i], uri);
 				}
-
 				$location.path('adverts/' + response._id);
+
 				// Clear form fields
 				$scope.name = '';
 			}, function(errorResponse) {
@@ -147,6 +147,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		};
 
 		//Load files uploaded from the brower
+		//As the drag-and-drop operation (or the input[type=file]) contains a file object
 		$scope.loadFiles = function () {
 
 			function dragenter(e) {
@@ -165,7 +166,6 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 			  var dt = e.dataTransfer;
 			  var files = dt.files;
-
 			  handleFiles(files);
 			}//END drop
 
@@ -177,10 +177,9 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			    if (!file.type.match(imageType)) {
 			      continue;
 			    }
-				
-				currentIndex = i + $scope.filesName.length;
-				$scope.filesName[currentIndex] = file.name;
-			    $scope.files.push(file);
+
+			    $scope.files.push(file);//-->Files will be sent while creating new advert
+				$scope.filesName.push(file.name);
 				for (i=0;i<$scope.filesName.length;i++) {
 			    	console.log('-->Stored : '+$scope.filesName[i]);
 			    }
@@ -190,13 +189,13 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			    preview = document.getElementById('list');
 			    img.classList.add('image');
 			    img.file = file;
-			    preview.appendChild(img); // Assuming that 'preview' is a the div output where the content will be displayed.
+			    preview.appendChild(img); //Assuming that 'preview' is a the div output where the content will be displayed.
 			    
 			    var reader = new FileReader();
-				// Closure to capture the file information.
+				//Closure to capture the file information.
 				reader.onload = (function(aImg) {
 					return function(e) {aImg.src = e.target.result;
-						//$scope.files.push(e.target.result);
+						//$scope.files.push(e.target.result);//-->stored files using binary format
 					};})(img);
 		        reader.readAsDataURL(file);
 			  }//END FOR

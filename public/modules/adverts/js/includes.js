@@ -18,8 +18,9 @@ angular.module('adverts')
 
         this.sendHTTPPOSTFile = function(file, uploadUrl){
             console.log('$http.post sends to '+uploadUrl);
-            var data = new FormData();
-            data.append('userFile', file);
+
+            var data = new FormData();//-->A set of key/value pairs to send using XMLHttpRequest
+            data.append('file', file);
             $http.post(uploadUrl, data, {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
@@ -33,17 +34,18 @@ angular.module('adverts')
         };
 
         this.sendXMLHTTPFile = function(file, uploadUrl) {
-                var xhr = new XMLHttpRequest();
-                var fd = new FormData();
+                var xhr = new XMLHttpRequest(),
+                    fd  = new FormData();
+                fd.append('file', file);
                 
                 xhr.open('POST',uploadUrl,true);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        // Handle response.
-                        console(xhr.responseText); // handle response.
-                    }
+                xhr.onload = function () {
+                  if (xhr.status === 200) {
+                    console.log('all done: ' + xhr.status);
+                  } else {
+                    console.log('Something went terribly wrong...');
+                  }
                 };
-                fd.append('userFile', file);
                 //Initiate a multipart/form-data upload
                 console.log('XMLHTTPrequest sends file to'+uploadUrl);
                 xhr.send(fd);//no refresh 
