@@ -2,8 +2,8 @@
 
 // Adverts controller
 angular.module('adverts').controller('AdvertsController', ['$scope', '$stateParams', 
-	'$location', 'Authentication', 'Adverts','AdvertsPID','$','includeService',
-	function($scope, $stateParams, $location, Authentication, Adverts,AdvertsPID,$,includeService) {
+	'$location', 'Authentication', 'Adverts','AdvertsPID','$http','$','includeService',
+	function($scope, $stateParams, $location, Authentication, Adverts,AdvertsPID,$http,$,includeService) {
 	$scope.authentication = Authentication;
 		$scope.init = function () {
 			$scope.authentication = Authentication; 
@@ -60,9 +60,8 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 		// Create new Advert
 		$scope.create = function() {
-			// Create new Advert object
 			var myid  = ($scope.selectedID_).replace('-','');
-			var advert = new Adverts ({
+			var form = {
 				name: this.name,
 				pid:myid,
 				region:this.region,
@@ -71,30 +70,51 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				prenom:this.prenom,
 				email:this.email,
 				tel:this.tel,
-
 				titre:this.titre,
 				description:this.description,
 				surface: $scope.selectedArea_,
-				prix:this.prix,
-				photo:$scope.filesName
-			});
+				prix:this.prix
+			};
+			// Create new Advert object
+			var fd = new FormData();
+            fd.append('file', $scope.files[0]);
 
-			// Redirect after save
-			advert.$save(function(response) {
+			$http.post('/adverts/upload', fd,{
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            }).
+			  success(function(data, status, headers, config) {
+					console.log('-->form.nom::: '+ form.nom);
+					var advert = new Adverts ({
+						name: form.name,
+						pid:form.pid,
+						region:form.region,
+						codepostale:form.codepostale,
+						nom:form.nom,
+						prenom:form.prenom,
+						email:form.email,
+						tel:form.tel,
+						titre:form.titre,
+						description:form.description,
+						surface: form.surface,
+						prix:form.prix,
+						photo:data
+					});
 
-				//SEND all files to the server to be moved in img folder
-				var uri = '/adverts/upload';
-				for (var i = $scope.files.length - 1; i >= 0; i--) {
-					//includeService.sendXMLHTTPFile($scope.files[i], uri);
-					includeService.sendHTTPPOSTFile($scope.files[i], uri);
-				}
-				$location.path('adverts/' + response._id);
-
-				// Clear form fields
-				$scope.name = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
+					// Redirect after save
+					advert.$save(function(response) {
+						$location.path('adverts/' + response._id);
+						// Clear form fields
+						$scope.name = '';
+					}, function(errorResponse) {
+						$scope.error = errorResponse.data.message;
+					});	 
+					  
+			  }).
+			  error(function(data, status, headers, config) {
+			    // called asynchronously if an error occurs
+			    // or server returns response with an error status.
+			  });
 		};
 
 		// Remove existing Advert
