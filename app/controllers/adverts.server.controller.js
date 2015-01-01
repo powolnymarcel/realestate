@@ -122,7 +122,6 @@ exports.fileUpload = function(req, res) {
     var form = new multiparty.Form(),
     	fileNames =[];
     form.parse(req, function(err, fields, files, fieldsList, filesList) {
-    	console.log('---'+files[0]);
     	// Get the temporary location of the file
 	     var tmp_path = files.file[0].path,
 	    //var tmp_path = files.file[0].path,

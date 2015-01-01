@@ -1,7 +1,52 @@
 <section data-ng-controller="AdvertsController" data-ng-init="findOne()">
-	<div class="page-header">
+	<div class="page-header text-primary">
 		<h1 data-ng-bind="advert.titre"></h1>
 	</div>
+
+	<div class="row">
+		<div class="showadvert col-md-10">
+			<div class="row">
+				<div class="col-md-2 text-header">Titre</div>
+				<div class="col-md-3 text-info">
+					<span data-ng-bind="advert.titre"></span>
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-2 text-header">Region</div>
+				<div class="col-md-3 text-info">
+					<span data-ng-bind="advert.region"></span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-2 text-header">Surface</div>
+				<div class="col-md-3 text-info">
+					<span data-ng-bind="advert.surface"></span>m²
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-2 text-header">Prix</div>
+				<div class="col-md-3 text-info">
+					<span data-ng-bind="advert.prix"></span>€
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8 text-info">
+					<br/>
+					<br/>
+					<span data-ng-bind="advert.description"></span>
+				</div>
+			</div>
+				<small>
+		<em class="text-muted">
+			Posted on
+			<span data-ng-bind="advert.created | date:'mediumDate'"></span>
+			by
+			<span data-ng-bind="advert.user.displayName"></span>
+		</em>
+	</small>	
+		
+		</div>
+
 		<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == advert.user._id))">
 			<a class="btn btn-primary" href="/#!/adverts/{{advert._id}}/edit">
 				<i class="glyphicon glyphicon-edit"></i>
@@ -11,12 +56,4 @@
 			</a>
 		</div>
 	</div>	
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="advert.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="advert.user.displayName"></span>
-		</em>
-	</small>	
 </section>
