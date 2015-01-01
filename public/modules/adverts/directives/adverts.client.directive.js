@@ -74,11 +74,11 @@ angular.module('adverts')
 			        
 			        if (top>550){
 			        	top=top-150;
-			        };
+			        }
 			        
 			        if (left>900){
 			        	left=left-320;
-			        };
+			        }
 
 			        $('#advert').css('top',top);
 			        $('#advert').css('left',left);

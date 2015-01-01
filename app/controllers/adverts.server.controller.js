@@ -128,7 +128,7 @@ exports.fileUpload = function(req, res) {
 	    //var tmp_path = files.file[0].path,
 	    	extIndex = tmp_path.lastIndexOf('.'),
 	        extension = (extIndex < 0) ? '' : tmp_path.substr(extIndex),
-	        fileName = String(uuid.v4()) + extension, //-->Generate a universal unique identifier
+	        fileName = uuid.v4() + extension, //-->Generate a universal unique identifier
 	        target_path = 'public/modules/adverts/img/users/' + fileName;
 	    fileNames.push(fileName);
 
@@ -140,7 +140,6 @@ exports.fileUpload = function(req, res) {
 	    }
 	    // move the file from the temporary location to the intended location
 	    fs.rename(tmp_path, target_path, function(err) {
-
 	        if(err){ 
 	        	console.log('Image is not saved:');
 	        	return res.status(400).send('Image is not saved:');

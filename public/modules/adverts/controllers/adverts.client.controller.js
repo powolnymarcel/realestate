@@ -120,7 +120,6 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				    // or server returns response with an error status.
 				  });
 			}//END for
-
 		};
 
 		// Remove existing Advert
@@ -170,7 +169,6 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			$scope.advert = AdvertsPID.get({ 
 				advertPID: response.pid
 			});
-			console.log('found');
 		};
 
 		//Load files uploaded from the brower
@@ -207,11 +205,9 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			//handle from input or from drag and drop
 		      var files = evt.target.files || evt.dataTransfer.files;
 			  for (var i = 0,file=files[i]; i < files.length; i++) {
-
 			    var imageType = /image.*/;
 			    if (!file.type.match(imageType)) {continue;}
 			    $scope.files.push(file);//-->Files will be sent while creating new advert		    
-
 			    //Add new image element in the ouput
 			    var img = document.createElement('img'),
 			    preview = document.getElementById('list');
