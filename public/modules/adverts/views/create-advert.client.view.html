@@ -105,10 +105,8 @@
                <div class="form-group">
                   <label for="dropbox" class="col-sm-4 control-label">Photos</label>
                   <div class="col-sm-8">
-                    <!--<input type="file" id="files" name="files[]" data-ng-init="loadFiles()" multiple/>
-                    <progress id="progress" min="0" max="100" value="0">0</progress>
-                    -->
-                    <div id="dropbox" class="dragdrop" data-ng-init="loadFiles()">
+                    <input type="file" id="files" data-ng-init="loadFilesFromInput(this.files)" multiple/>
+                    <div id="dropbox" class="dragdrop" data-ng-init="dragandrop()">
                        Drag and drop  files here...
                     </div>
                     <output id="list" class=""></output>

@@ -58,27 +58,29 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		};
 
 
+ 
+
+
 		// Create new Advert
 		$scope.create = function() {
-			var myid  = ($scope.selectedID_).replace('-','');
-			var form = {
-				name: this.name,
-				pid:myid,
-				region:this.region,
-				codepostale:this.codepostale,
-				nom:this.nom,
-				prenom:this.prenom,
-				email:this.email,
-				tel:this.tel,
-				titre:this.titre,
-				description:this.description,
-				surface: $scope.selectedArea_,
-				prix:this.prix
-			};
-			// Create new Advert object
-			var fd = new FormData();
+			var myid  = ($scope.selectedID_).replace('-',''),
+			    form = {
+					name: this.name,
+					pid:myid,
+					region:this.region,
+					codepostale:this.codepostale,
+					nom:this.nom,
+					prenom:this.prenom,
+					email:this.email,
+					tel:this.tel,
+					titre:this.titre,
+					description:this.description,
+					surface: $scope.selectedArea_,
+					prix:this.prix
+			    },
+			fd = new FormData();
             fd.append('file', $scope.files[0]);
-
+            
 			$http.post('/adverts/upload', fd,{
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
@@ -98,7 +100,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 						description:form.description,
 						surface: form.surface,
 						prix:form.prix,
-						photo:data
+						photo:data.photo
 					});
 
 					// Redirect after save
@@ -168,8 +170,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 		//Load files uploaded from the brower
 		//As the drag-and-drop operation (or the input[type=file]) contains a file object
-		$scope.loadFiles = function () {
-
+		$scope.dragandrop = function () {
 			function dragenter(e) {
 			  e.stopPropagation();
 			  e.preventDefault();
@@ -180,29 +181,31 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			  e.preventDefault();
 			}
 
-			function drop(e) {
-			  e.stopPropagation();
-			  e.preventDefault();
-
-			  var dt = e.dataTransfer;
-			  var files = dt.files;
-			  handleFiles(files);
+			function drop(evt) {
+			  evt.stopPropagation();
+			  evt.preventDefault();
+			  handleFileSelect(evt);
 			}//END drop
 
-			var currentIndex  = 0;
-			function handleFiles(files) {
+			var dropbox = document.getElementById('dropbox');
+			dropbox.addEventListener('dragenter', dragenter, false);
+			dropbox.addEventListener('dragover', dragover, false);
+			dropbox.addEventListener('drop', drop, false); 
+		};//END Darg and drop
+
+		$scope.loadFilesFromInput = function() {
+		  var dropbox=document.getElementById('files');
+		  dropbox.addEventListener('change', handleFileSelect, false);
+		};
+
+		function handleFileSelect(evt) { 
+			//handle from input or from drag and drop
+		      var files = evt.target.files || evt.dataTransfer.files;
 			  for (var i = 0,file=files[i]; i < files.length; i++) {
 			    var imageType = /image.*/;
-			    
-			    if (!file.type.match(imageType)) {
-			      continue;
-			    }
-
+			    if (!file.type.match(imageType)) {continue;}
 			    $scope.files.push(file);//-->Files will be sent while creating new advert
-				$scope.filesName.push(file.name);
-				for (i=0;i<$scope.filesName.length;i++) {
-			    	console.log('-->Stored : '+$scope.filesName[i]);
-			    }
+			    console.log('-->filesName: '+file.name+' index::'+i);
 			    
 			    //Add new image element in the ouput
 			    var img = document.createElement('img'),
@@ -219,15 +222,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 					};})(img);
 		        reader.readAsDataURL(file);
 			  }//END FOR
-			}//END handleFiles
-
-			var dropbox = document.getElementById('dropbox');
-			dropbox.addEventListener('dragenter', dragenter, false);
-			dropbox.addEventListener('dragover', dragover, false);
-			dropbox.addEventListener('drop', drop, false); 
-		};//END loadFiles
-
-
+		 }
 
 	}
 ]);
