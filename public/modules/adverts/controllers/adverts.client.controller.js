@@ -79,11 +79,15 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			var fd = new FormData();
             fd.append('file', $scope.files[0]);
 
+
 			$http.post('/adverts/upload', fd,{
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             }).
 			  success(function(data, status, headers, config) {
+			  		console.log('posting');
+			  		data.replace('"','');
+            		console.log(data);
 					console.log('-->form.nom::: '+ form.nom);
 					var advert = new Adverts ({
 						name: form.name,
@@ -164,6 +168,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			$scope.advert = AdvertsPID.get({ 
 				advertPID: response.pid
 			});
+			console.log('found');
 		};
 
 		//Load files uploaded from the brower
@@ -192,7 +197,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			var currentIndex  = 0;
 			function handleFiles(files) {
 			  for (var i = 0,file=files[i]; i < files.length; i++) {
-			    var imageType = /image.*/;
+			    var imageType = 'image.*';
 			    
 			    if (!file.type.match(imageType)) {
 			      continue;

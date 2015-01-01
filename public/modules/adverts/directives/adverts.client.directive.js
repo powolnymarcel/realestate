@@ -71,6 +71,17 @@ angular.module('adverts')
 				    $('#positionButtonDiv').append( '<p id ="ptr" ><img src="/modules/adverts/img/pointeur.png"/></p>');
 			          	$('#ptr').css('top',top);
 			          	$('#ptr').css('left',left);
+			        
+			        if (top>550){
+			        	top=top-150;
+			        };
+			        
+			        if (left>900){
+			        	left=left-320;
+			        };
+
+			        $('#advert').css('top',top);
+			        $('#advert').css('left',left);
 
 				});
 
