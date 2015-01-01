@@ -61,6 +61,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		// Create new Advert
 		$scope.create = function() {
 			var myid  = ($scope.selectedID_).replace('-','');
+<<<<<<< HEAD
 			var form = {
 				name: this.name,
 				pid:myid,
@@ -119,6 +120,67 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
 			  });
+=======
+			var form  = {
+					name: this.name,
+					pid:myid,
+					region:this.region,
+					codepostale:this.codepostale,
+					nom:this.nom,
+					prenom:this.prenom,
+					email:this.email,
+					tel:this.tel,
+					titre:this.titre,
+					description:this.description,
+					surface: $scope.selectedArea_,
+					prix:this.prix
+			    };
+			//Returns a list of the elements within the document which have image css class
+			var imgs  = document.querySelectorAll('.image');
+			var count = 0;
+
+            for (var i= 0; i<imgs.length; i++) 
+            {
+	           	var fd = new FormData();
+	           	fd.append('file',imgs[i].file);
+				$http.post('/adverts/upload', fd,{
+	                transformRequest: angular.identity,
+	                headers: {'Content-Type': undefined}
+	            }).
+				  success(function(filesname) {
+				  	$scope.filesName.push(filesname.photo);
+				  		if(count == imgs.length-1){
+						var advert = new Adverts ({
+							name: form.name,
+							pid:form.pid,
+							region:form.region,
+							codepostale:form.codepostale,
+							nom:form.nom,
+							prenom:form.prenom,
+							email:form.email,
+							tel:form.tel,
+							titre:form.titre,
+							description:form.description,
+							surface: form.surface,
+							prix:form.prix,
+							photo:$scope.filesName
+						});
+						// Redirect after save
+						advert.$save(function(response) {
+							$location.path('adverts/' + response._id);
+							// Clear form fields
+							$scope.name = '';
+						}, function(errorResponse) {
+							$scope.error = errorResponse.data.message;
+						});	 }
+						count++;
+				  }).
+				  error(function(err) {
+				    // called asynchronously if an error occurs
+				    // or server returns response with an error status.
+				  });
+			}//END for
+>>>>>>> 3ab493fb80622bd34a30102c78281ac52150d2eb
 		};
 
 		// Remove existing Advert
@@ -173,8 +235,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 		//Load files uploaded from the brower
 		//As the drag-and-drop operation (or the input[type=file]) contains a file object
-		$scope.loadFiles = function () {
-
+		$scope.dragandrop = function () {
 			function dragenter(e) {
 			  e.stopPropagation();
 			  e.preventDefault();
@@ -185,18 +246,28 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			  e.preventDefault();
 			}
 
-			function drop(e) {
-			  e.stopPropagation();
-			  e.preventDefault();
-
-			  var dt = e.dataTransfer;
-			  var files = dt.files;
-			  handleFiles(files);
+			function drop(evt) {
+			  evt.stopPropagation();
+			  evt.preventDefault();
+			  handleFileSelect(evt);
 			}//END drop
 
-			var currentIndex  = 0;
-			function handleFiles(files) {
+			var dropbox = document.getElementById('dropbox');
+			dropbox.addEventListener('dragenter', dragenter, false);
+			dropbox.addEventListener('dragover', dragover, false);
+			dropbox.addEventListener('drop', drop, false); 
+		};//END Darg and drop
+
+		$scope.loadFilesFromInput = function() {
+		  var dropbox=document.getElementById('files');
+		  dropbox.addEventListener('change', handleFileSelect, false);
+		};
+
+		function handleFileSelect(evt) { 
+			//handle from input or from drag and drop
+		      var files = evt.target.files || evt.dataTransfer.files;
 			  for (var i = 0,file=files[i]; i < files.length; i++) {
+<<<<<<< HEAD
 			    var imageType = 'image.*';
 			    
 			    if (!file.type.match(imageType)) {
@@ -209,6 +280,11 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			    	console.log('-->Stored : '+$scope.filesName[i]);
 			    }
 			    
+=======
+			    var imageType = /image.*/;
+			    if (!file.type.match(imageType)) {continue;}
+			    $scope.files.push(file);//-->Files will be sent while creating new advert		    
+>>>>>>> 3ab493fb80622bd34a30102c78281ac52150d2eb
 			    //Add new image element in the ouput
 			    var img = document.createElement('img'),
 			    preview = document.getElementById('list');
@@ -224,15 +300,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 					};})(img);
 		        reader.readAsDataURL(file);
 			  }//END FOR
-			}//END handleFiles
-
-			var dropbox = document.getElementById('dropbox');
-			dropbox.addEventListener('dragenter', dragenter, false);
-			dropbox.addEventListener('dragover', dragover, false);
-			dropbox.addEventListener('drop', drop, false); 
-		};//END loadFiles
-
-
+		 }//END handleFileSelect
 
 	}
 ]);
