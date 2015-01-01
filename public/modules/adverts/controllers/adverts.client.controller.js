@@ -61,66 +61,6 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		// Create new Advert
 		$scope.create = function() {
 			var myid  = ($scope.selectedID_).replace('-','');
-<<<<<<< HEAD
-			var form = {
-				name: this.name,
-				pid:myid,
-				region:this.region,
-				codepostale:this.codepostale,
-				nom:this.nom,
-				prenom:this.prenom,
-				email:this.email,
-				tel:this.tel,
-				titre:this.titre,
-				description:this.description,
-				surface: $scope.selectedArea_,
-				prix:this.prix
-			};
-			// Create new Advert object
-			var fd = new FormData();
-            fd.append('file', $scope.files[0]);
-
-
-			$http.post('/adverts/upload', fd,{
-                transformRequest: angular.identity,
-                headers: {'Content-Type': undefined}
-            }).
-			  success(function(data, status, headers, config) {
-			  		console.log('posting');
-			  		data.replace('"','');
-            		console.log(data);
-					console.log('-->form.nom::: '+ form.nom);
-					var advert = new Adverts ({
-						name: form.name,
-						pid:form.pid,
-						region:form.region,
-						codepostale:form.codepostale,
-						nom:form.nom,
-						prenom:form.prenom,
-						email:form.email,
-						tel:form.tel,
-						titre:form.titre,
-						description:form.description,
-						surface: form.surface,
-						prix:form.prix,
-						photo:data
-					});
-
-					// Redirect after save
-					advert.$save(function(response) {
-						$location.path('adverts/' + response._id);
-						// Clear form fields
-						$scope.name = '';
-					}, function(errorResponse) {
-						$scope.error = errorResponse.data.message;
-					});	 
-					  
-			  }).
-			  error(function(data, status, headers, config) {
-			    // called asynchronously if an error occurs
-			    // or server returns response with an error status.
-			  });
-=======
 			var form  = {
 					name: this.name,
 					pid:myid,
@@ -180,7 +120,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				    // or server returns response with an error status.
 				  });
 			}//END for
->>>>>>> 3ab493fb80622bd34a30102c78281ac52150d2eb
+
 		};
 
 		// Remove existing Advert
@@ -267,24 +207,11 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			//handle from input or from drag and drop
 		      var files = evt.target.files || evt.dataTransfer.files;
 			  for (var i = 0,file=files[i]; i < files.length; i++) {
-<<<<<<< HEAD
-			    var imageType = 'image.*';
-			    
-			    if (!file.type.match(imageType)) {
-			      continue;
-			    }
 
-			    $scope.files.push(file);//-->Files will be sent while creating new advert
-				$scope.filesName.push(file.name);
-				for (i=0;i<$scope.filesName.length;i++) {
-			    	console.log('-->Stored : '+$scope.filesName[i]);
-			    }
-			    
-=======
 			    var imageType = /image.*/;
 			    if (!file.type.match(imageType)) {continue;}
 			    $scope.files.push(file);//-->Files will be sent while creating new advert		    
->>>>>>> 3ab493fb80622bd34a30102c78281ac52150d2eb
+
 			    //Add new image element in the ouput
 			    var img = document.createElement('img'),
 			    preview = document.getElementById('list');
