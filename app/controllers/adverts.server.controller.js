@@ -119,8 +119,10 @@ exports.hasAuthorization = function(req, res, next) {
 
 // we need the fs module for moving the uploaded files
 exports.fileUpload = function(req, res) {
-    var form = new multiparty.Form();
+    var form = new multiparty.Form(),
+    	fileNames =[];
     form.parse(req, function(err, fields, files, fieldsList, filesList) {
+    	console.log('---'+files[0]);
     	// Get the temporary location of the file
 	     var tmp_path = files.file[0].path,
 	    //var tmp_path = files.file[0].path,
@@ -128,6 +130,8 @@ exports.fileUpload = function(req, res) {
 	        extension = (extIndex < 0) ? '' : tmp_path.substr(extIndex),
 	        fileName = uuid.v4() + extension, //-->Generate a universal unique identifier
 	        target_path = 'public/modules/adverts/img/users/' + fileName;
+	    fileNames.push(fileName);
+
 	    // Server side file type checker.
 	    var imgs = ['.png', '.jpg', '.jpeg', '.gif', '.bmp'];
 	    if (imgs.indexOf(extension) == -1) {
@@ -141,9 +145,11 @@ exports.fileUpload = function(req, res) {
 	        	return res.status(400).send('Image is not saved:');
 	        }
 	 		//return res.json(fileName);
-	 		var fn ={photo:fileName};
-	 		res.send(fn);
+	 		 var fn ={photo:fileName};
+		     res.send(fn);
 	    });
+		
+	
 	});
 };
 
