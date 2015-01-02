@@ -40,7 +40,6 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 			$('#contenu').on('click','.buildings',function(e) {
 
-
 						$scope.selectedID_= $(this).attr('id');
 						$scope.$apply();
 			          	//Select to the database with the corresponding id and verify if 
@@ -48,13 +47,11 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			          	
 						$http.get('/adverts/pidroute/' + $(this).attr('id'))
 						.success(function (advert) {
-							$scope.findAdvertByPID(advert);
 							$scope.showAdverts.visible = true;
 							$('#form :input').prop('disabled', true);
 							includeService.includeAdvert(advert);
 						}).error(function (err) {//If this pid is not yet use for an another advert
 							$scope.showAdverts.visible = false;
-							$scope.pid = $(this).attr('id');
 							$('#form :input').prop('disabled', false);					       	
 						});
 
@@ -130,6 +127,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		// Create new Advert
 		$scope.create = function() {
 			var myid  = ($scope.selectedID_).replace('-','');
+			//Temporary variable containing form informations
 			var form  = {
 					name: this.name,
 					pid:myid,
@@ -144,10 +142,11 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 					area: $scope.selectedArea_,
 					price:this.price
 			    };
-			//Returns a list of the elements within the document which have image css class
+			//Returns a list of the elements within the document 
+			//which have image css class
 			var imgs  = document.querySelectorAll('.image');
-			var count = 0;
-
+			var count = 0;//
+			//Send all files before to store the advert
             for (var i= 0; i<imgs.length; i++) 
             {
 	           	var fd = new FormData();
@@ -157,6 +156,8 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 	                headers: {'Content-Type': undefined}
 	            }).
 				  success(function(filesname) {
+				  	//files are stored and renamed by the controller server side
+				  	//we recieve each name of stored file and push it in fileName array
 				  	$scope.filesName.push({photo:filesname.photo});
 				  		if(count == imgs.length-1){
 						var advert = new Adverts ({
