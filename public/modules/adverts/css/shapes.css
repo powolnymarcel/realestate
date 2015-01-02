@@ -29,17 +29,6 @@
 }
 
 
-.boxes{   
-    position: fixed;
-    left:650px;
-    top: 130px;
-    width: 500px; 
-    height: 210px;
-    max-height: 300px;
-    border: 2px solid black;
-    z-index: 1;
-}
-
 
 .dragdrop{
     margin: 5px 0;
@@ -56,6 +45,14 @@
     width: 500px; 
     height: 210px;
     max-height: 300px; 
+}
+
+.photo{   
+    position: relative;
+    left:650px;
+    top: 130px;
+    width: 500px; 
+    height: 210px;
 }
 
 .image{   
