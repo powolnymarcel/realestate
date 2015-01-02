@@ -6,11 +6,14 @@ angular.module('adverts')
  
         this.includeAdvert = function(advert) {
 
-        	var docs ='<div class="col-sm-4"><img src="modules/adverts/img/users/'+advert.photo[0].photo+'"class="image">'+
+        	var docs ='<a href="#!/adverts/'+advert._id+'">'+
+                      '<div class="col-sm-4"><img src="modules/adverts/img/users/'+advert.photo[0].photo+'"class="image">'+
         	          '</div> <div class="col-sm-7">'+
         	          '<span style="font-weight: bold;">  '+advert.region+'</span><br/>'+
               	      '<span>'+advert.area+' M², '+advert.price+' €</span><br/>'+
-                      '</div>';
+                      '</div>'+
+                      '</a>';
+
             document.getElementById('advert').innerHTML= docs;
         };
 

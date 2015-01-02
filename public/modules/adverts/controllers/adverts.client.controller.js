@@ -14,10 +14,11 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 								 visible:false};
 		};
 
+		//Les actions du map liées à la liste des annonces 
+		$scope.ListAdvertMapActions = function () {
 
-		$scope.ListAdvertMap = function () {
 
-
+			//changer la couleur de la parcelle qui correspond à l'annonce choisie
 			$('#ListAdvert').on('mouseover','.jumbotron',function(e) {
 					
 					var pid = '#'+ $(this).find('.indice').text();
@@ -26,6 +27,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 					
 			});
 
+			//restaurer la couleur par défaut de la parcelle
 			$('#ListAdvert').on('mouseout','.jumbotron',function(e) {
 					
 					var pid = '#'+ $(this).find('.indice').text();
@@ -36,7 +38,10 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 		};
 
-		$scope.createAdvertMap = function () {
+
+
+		//Les actions du map liées à la création d'une annonce
+		$scope.CreateAdvertMapActions = function () {
 
 			$('#contenu').on('click','.buildings',function(e) {
 
@@ -58,14 +63,17 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 							$('#form :input').prop('disabled', false);					       	
 						});
 
+					// Prendre les coordoneés du curseur
 					var left = e.clientX-10;
 				    var top = e.clientY-40;
 
+				    //ajouter un pointeur 
 				    $('#ptr').remove();
 				    $('#positionButtonDiv').append( '<p id ="ptr" ><img src="/modules/adverts/img/pointeur.png"/></p>');
 			          	$('#ptr').css('top',top);
 			          	$('#ptr').css('left',left);
 			        
+			        // ajustement de l'extrait de l'annonce selon la position de la parcelle
 			        if (top>550){
 			        	top=top-150;
 			        }
