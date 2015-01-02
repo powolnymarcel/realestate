@@ -1,3 +1,13 @@
+.AdvertBlink{
+    fill:yellow;
+}
+
+.indice {
+
+    display: none;
+}
+
+
 .buildings {
     stroke: rgba(70, 70, 90, 1);
     fill: rgba(137, 156, 189, 1);

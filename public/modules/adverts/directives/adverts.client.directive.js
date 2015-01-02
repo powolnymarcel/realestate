@@ -33,6 +33,7 @@ angular.module('adverts')
 				                 .attr('height',400)
 				                 .append('g')
                                  .attr('transform', 'scale('+(600/800)+')');
+
 				//Drawbuildings
 				container.selectAll('.buildings')
 				.data(buildings)
@@ -40,6 +41,7 @@ angular.module('adverts')
 				.append('path')
 					.classed('buildings',1)
 					.attr('d', function(d){return d.toSvgPath();})
+					.attr('id',function(d){return d.getId().replace('-','');})
 					.on('click', function(d, i){
 
 
@@ -48,42 +50,8 @@ angular.module('adverts')
 			          	scope.$apply();
 			          	//Select to the database with the corresponding id and verify if 
 			          	//it does not already be used
-			          	
-						$http.get('/adverts/pidroute/' + d.getId().replace('-',''))
-						.success(function (advert) {
-							scope.findAdvertByPID(advert);
-							scope.showAdverts.visible = true;
-							$('#form :input').prop('disabled', true);
-							includeService.includeAdvert(advert);
-						}).error(function (err) {//If this pid is not yet use for an another advert
-							scope.showAdverts.visible = false;
-							scope.pid = d.getId();
-							$('#form :input').prop('disabled', false);					       	
-						});
+
 			        });
-				
-				$('.buildings').click(function(e){
-
-				    var left = e.clientX-10;
-				    var top = e.clientY-40;
-
-				    $('#ptr').remove();
-				    $('#positionButtonDiv').append( '<p id ="ptr" ><img src="/modules/adverts/img/pointeur.png"/></p>');
-			          	$('#ptr').css('top',top);
-			          	$('#ptr').css('left',left);
-			        
-			        if (top>550){
-			        	top=top-150;
-			        }
-			        
-			        if (left>900){
-			        	left=left-320;
-			        }
-
-			        $('#advert').css('top',top);
-			        $('#advert').css('left',left);
-
-				});
 
 				//Drawroads
 				container.selectAll('.roads')
