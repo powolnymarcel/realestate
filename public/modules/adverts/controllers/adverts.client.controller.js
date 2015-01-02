@@ -88,7 +88,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 	                headers: {'Content-Type': undefined}
 	            }).
 				  success(function(filesname) {
-				  	$scope.filesName.push(filesname.photo);
+				  	$scope.filesName.push({photo:filesname.photo});
 				  		if(count == imgs.length-1){
 						var advert = new Adverts ({
 							pid:form.pid,

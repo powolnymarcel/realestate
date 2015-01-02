@@ -22,7 +22,7 @@ var AdvertSchema = new Schema({
 	description: { type: String ,default:'Real Estate'},
 	area:{ type: Number ,default:10},
 	price: { type: Number ,default:800},
-	photo: {type :String,default:'img.jpg'},
+	photo: {type :Array,default:'img.jpg'},
 	created: {
 		type: Date,
 		default: Date.now
