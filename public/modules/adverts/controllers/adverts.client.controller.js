@@ -20,22 +20,15 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 			//changer la couleur de la parcelle qui correspond à l'annonce choisie
 			$('#ListAdvert').on('mouseover','.jumbotron',function(e) {
-					
 					var pid = '#'+ $(this).find('.indice').text();
 					$(pid).attr('class','AdvertBlink');
-
-					
 			});
 
 			//restaurer la couleur par défaut de la parcelle
 			$('#ListAdvert').on('mouseout','.jumbotron',function(e) {
-					
 					var pid = '#'+ $(this).find('.indice').text();
 					$(pid).attr('class','buildings');
-
-					
 			});
-
 		};
 
 
@@ -44,6 +37,19 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		$scope.CreateAdvertMapActions = function () {
 
 			$('#contenu').on('click','.buildings',function(e) {
+				$scope.selectedID_= $(this).attr('id');
+				$scope.$apply();
+	          	//Select to the database with the corresponding id and verify if 
+	          	//it does not already be used
+				$http.get('/adverts/pidroute/' + $(this).attr('id'))
+				.success(function (advert) {
+					$scope.showAdverts.visible = true;
+					$('#form :input').prop('disabled', true);
+					includeService.includeAdvert(advert);
+				}).error(function (err) {//If this pid is not yet use for an another advert
+					$scope.showAdverts.visible = false;
+					$('#form :input').prop('disabled', false);					       	
+				});
 
 
 						$scope.selectedID_= $(this).attr('id');
@@ -70,32 +76,26 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				    //ajouter un pointeur 
 				    $('#ptr').remove();
 				    $('#positionButtonDiv').append( '<p id ="ptr" ><img src="/modules/adverts/img/pointeur.png"/></p>');
-			          	$('#ptr').css('top',top);
-			          	$('#ptr').css('left',left);
+			        $('#ptr').css('top',top);
+			        $('#ptr').css('left',left);
 			        
 			        // ajustement de l'extrait de l'annonce selon la position de la parcelle
 			        if (top>550){
 			        	top=top-150;
 			        }
-			        
 			        if (left>900){
 			        	left=left-320;
 			        }
-
 			        $('#advert').css('top',top);
 			        $('#advert').css('left',left);
 
-
 			});
-
 		};
 
 
 
 		$scope.zoom = function () {
-
 			$(document).ready(function() {
-
 				function moveButtonClickHandler(e){
 					$('#ptr').remove();
 			    	var pixelsToMoveOnX = 0;
@@ -125,10 +125,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 						scaleToAdd = -scaleToAdd;
 					$('#imgContainer').smartZoom('zoom', scaleToAdd);
 			    }
-				
-
 				$('#imgContainer').smartZoom({'containerClass':'zoomableContainer'});
-				
 				$('#topPositionMap,#leftPositionMap,#rightPositionMap,#bottomPositionMap').bind('click', moveButtonClickHandler);
   				$('#zoomInButton,#zoomOutButton').bind('click', zoomButtonClickHandler);
 			});
@@ -138,6 +135,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		// Create new Advert
 		$scope.create = function() {
 			var myid  = ($scope.selectedID_).replace('-','');
+			//Temporary variable containing form informations
 			var form  = {
 					name: this.name,
 					pid:myid,
@@ -152,10 +150,11 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 					area: $scope.selectedArea_,
 					price:this.price
 			    };
-			//Returns a list of the elements within the document which have image css class
+			//Returns a list of the elements within the document 
+			//which have image css class
 			var imgs  = document.querySelectorAll('.image');
-			var count = 0;
-
+			var count = 0;//
+			//Send all files before to store the advert
             for (var i= 0; i<imgs.length; i++) 
             {
 	           	var fd = new FormData();
@@ -165,6 +164,8 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 	                headers: {'Content-Type': undefined}
 	            }).
 				  success(function(filesname) {
+				  	//files are stored and renamed by the controller server side
+				  	//we recieve each name of stored file and push it in fileName array
 				  	$scope.filesName.push({photo:filesname.photo});
 				  		if(count == imgs.length-1){
 						var advert = new Adverts ({
