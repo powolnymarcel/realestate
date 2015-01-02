@@ -6,7 +6,7 @@ angular.module('adverts')
  
         this.includeAdvert = function(advert) {
 
-        	var docs ='<div class="col-sm-4"><img src="modules/adverts/img/'+advert.photo+'"class="image">'+
+        	var docs ='<div class="col-sm-4"><img src="modules/adverts/img/users/'+advert.photo+'"class="image">'+
         	          '</div> <div class="col-sm-7">'+
         	          '<span style="font-weight: bold;">  '+advert.region+'</span><br/>'+
               	      '<span>'+advert.surface+' M², '+advert.prix+' €</span><br/>'+

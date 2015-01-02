@@ -2,8 +2,8 @@
 
 // Adverts controller
 angular.module('adverts').controller('AdvertsController', ['$scope', '$stateParams', 
-	'$location', 'Authentication', 'Adverts','AdvertsPID','$http','$','includeService',
-	function($scope, $stateParams, $location, Authentication, Adverts,AdvertsPID,$http,$,includeService) {
+	'$location', 'Authentication', 'Adverts','AdvertsPID','$http','$','includeService', 'd3',
+	function($scope, $stateParams, $location, Authentication, Adverts,AdvertsPID,$http,$,includeService,d3) {
 	$scope.authentication = Authentication;
 		$scope.init = function () {
 			$scope.authentication = Authentication; 
@@ -13,6 +13,75 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			$scope.showAdverts = {url:'modules/adverts/views/show-advert.client.view.html', 
 								 visible:false};
 		};
+
+
+		$scope.ListAdvertMap = function () {
+
+
+			$('#ListAdvert').on('mouseover','.jumbotron',function(e) {
+					
+					var pid = '#'+ $(this).find('.indice').text();
+					$(pid).attr('class','AdvertBlink');
+
+					
+			});
+
+			$('#ListAdvert').on('mouseout','.jumbotron',function(e) {
+					
+					var pid = '#'+ $(this).find('.indice').text();
+					$(pid).attr('class','buildings');
+
+					
+			});
+
+		};
+
+		$scope.createAdvertMap = function () {
+
+			$('#contenu').on('click','.buildings',function(e) {
+
+
+						$scope.selectedID_= $(this).attr('id');
+						$scope.$apply();
+			          	//Select to the database with the corresponding id and verify if 
+			          	//it does not already be used
+			          	
+						$http.get('/adverts/pidroute/' + $(this).attr('id'))
+						.success(function (advert) {
+							$scope.findAdvertByPID(advert);
+							$scope.showAdverts.visible = true;
+							$('#form :input').prop('disabled', true);
+							includeService.includeAdvert(advert);
+						}).error(function (err) {//If this pid is not yet use for an another advert
+							$scope.showAdverts.visible = false;
+							$scope.pid = $(this).attr('id');
+							$('#form :input').prop('disabled', false);					       	
+						});
+
+					var left = e.clientX-10;
+				    var top = e.clientY-40;
+
+				    $('#ptr').remove();
+				    $('#positionButtonDiv').append( '<p id ="ptr" ><img src="/modules/adverts/img/pointeur.png"/></p>');
+			          	$('#ptr').css('top',top);
+			          	$('#ptr').css('left',left);
+			        
+			        if (top>550){
+			        	top=top-150;
+			        }
+			        
+			        if (left>900){
+			        	left=left-320;
+			        }
+
+			        $('#advert').css('top',top);
+			        $('#advert').css('left',left);
+
+
+			});
+
+		};
+
 
 
 		$scope.zoom = function () {
