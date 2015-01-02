@@ -8,18 +8,18 @@
             <div class="row jumbotron" data-ng-repeat="advert in adverts">
                 <a data-ng-href="#!/adverts/{{advert._id}} ">
                 <div class="col-sm-3 text-info">
-                    <img data-ng-src="modules/adverts/img/{{advert.photo}}" alt="Photo of {{advert.photo}}" class="img-thumbnail">
+                    <img data-ng-src="modules/adverts/img/users/{{advert.photo}}" alt="Photo of {{advert.photo}}" class="img-thumbnail">
                 </div>
 
                 <div class="col-sm-8 text-info">
-                    <span class="titre-annonce" data-ng-bind="advert.titre"></span>
+                    <span class="titre-annonce" data-ng-bind="advert.title"></span>
                     <br/>
                     <span data-ng-bind="advert.region"></span>
                     <br/>
-                    <span data-ng-bind="advert.surface"></span><span> M²</span>
+                    <span data-ng-bind="advert.area"></span><span> M²</span>
                     <br/>
                     <br/>
-                    <span class="prix-annonce"data-ng-bind="advert.prix"></span>
+                    <span class="prix-annonce"data-ng-bind="advert.price"></span>
                     <span class="prix-annonce"> €</span>
                     <br/>
                     <br/>
@@ -38,20 +38,7 @@
                 </div>
             </div>
         </div>
-    
-<!--
-    <div class="list-group">
-        <a data-ng-repeat="advert in adverts" data-ng-href="#!/adverts/{{advert._id}}" class="list-group-item">
-            <small class="list-group-item-text">
-                Posted on
-                <span data-ng-bind="advert.created | date:'medium'"></span>
-                by
-                <span data-ng-bind="advert.user.displayName"></span>
-            </small>
-            <h4 class="list-group-item-heading" data-ng-bind="advert.name"></h4>
-        </a>
-    </div>
---> 
+     
         <div id="contenu" >
             <div id="imgContainer" data-ng-init="zoom()">
       

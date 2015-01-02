@@ -5,13 +5,13 @@
 
 	<div class="row">
 		<div class="showadvert col-md-4">
-			<img data-ng-src="modules/adverts/img/{{advert.photo}}" alt="Photo of {{advert.photo}}" class="img-thumbnail">
+			<img data-ng-src="modules/adverts/img/users/{{advert.photo}}" alt="Photo of {{advert.photo}}" class="img-thumbnail">
 		</div>
 		<div class="showadvert col-md-8">
 			<div class="row">
-				<div class="col-md-2 text-header">Titre</div>
+				<div class="col-md-2 text-header">Title</div>
 				<div class="col-md-3 text-info">
-					<span data-ng-bind="advert.titre"></span>
+					<span data-ng-bind="advert.title"></span>
 				</div>
 				<div class="col-md-1"></div>
 				<div class="col-md-2 text-header">Region</div>
@@ -21,14 +21,14 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-2 text-header">Surface</div>
+				<div class="col-md-2 text-header">Area</div>
 				<div class="col-md-3 text-info">
-					<span data-ng-bind="advert.surface"></span>m²
+					<span data-ng-bind="advert.area"></span>m²
 				</div>
 				<div class="col-md-1"></div>
-				<div class="col-md-2 text-header">Prix</div>
+				<div class="col-md-2 text-header">Price</div>
 				<div class="col-md-3 text-info">
-					<span data-ng-bind="advert.prix"></span>€
+					<span data-ng-bind="advert.price"></span>€
 				</div>
 			</div>
 

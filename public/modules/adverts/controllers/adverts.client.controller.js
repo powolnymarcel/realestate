@@ -65,15 +65,15 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 					name: this.name,
 					pid:myid,
 					region:this.region,
-					codepostale:this.codepostale,
-					nom:this.nom,
-					prenom:this.prenom,
+					postcode:this.postcode,
+					firstname:this.firstname,
+					lastname:this.lastname,
 					email:this.email,
-					tel:this.tel,
+					phone:this.phone,
 					titre:this.titre,
 					description:this.description,
-					surface: $scope.selectedArea_,
-					prix:this.prix
+					area: $scope.selectedArea_,
+					price:this.price
 			    };
 			//Returns a list of the elements within the document which have image css class
 			var imgs  = document.querySelectorAll('.image');
@@ -91,18 +91,17 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 				  	$scope.filesName.push(filesname.photo);
 				  		if(count == imgs.length-1){
 						var advert = new Adverts ({
-							name: form.name,
 							pid:form.pid,
 							region:form.region,
-							codepostale:form.codepostale,
-							nom:form.nom,
-							prenom:form.prenom,
+							postcode:form.postcode,
+							firstname:form.firstname,
+							lastname:form.lastname,
 							email:form.email,
-							tel:form.tel,
-							titre:form.titre,
+							phone:form.phone,
+							title:form.title,
 							description:form.description,
-							surface: form.surface,
-							prix:form.prix,
+							area: form.area,
+							price:form.price,
 							photo:$scope.filesName
 						});
 						// Redirect after save
