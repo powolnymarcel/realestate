@@ -16,75 +16,50 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 
 		$scope.ListAdvertMap = function () {
-
-
 			$('#ListAdvert').on('mouseover','.jumbotron',function(e) {
-					
 					var pid = '#'+ $(this).find('.indice').text();
 					$(pid).attr('class','AdvertBlink');
-
-					
 			});
 
 			$('#ListAdvert').on('mouseout','.jumbotron',function(e) {
-					
 					var pid = '#'+ $(this).find('.indice').text();
 					$(pid).attr('class','buildings');
-
-					
 			});
-
 		};
 
 		$scope.createAdvertMap = function () {
-
 			$('#contenu').on('click','.buildings',function(e) {
+				$scope.selectedID_= $(this).attr('id');
+				$scope.$apply();
+	          	//Select to the database with the corresponding id and verify if 
+	          	//it does not already be used
+				$http.get('/adverts/pidroute/' + $(this).attr('id'))
+				.success(function (advert) {
+					$scope.showAdverts.visible = true;
+					$('#form :input').prop('disabled', true);
+					includeService.includeAdvert(advert);
+				}).error(function (err) {//If this pid is not yet use for an another advert
+					$scope.showAdverts.visible = false;
+					$('#form :input').prop('disabled', false);					       	
+				});
 
-						$scope.selectedID_= $(this).attr('id');
-						$scope.$apply();
-			          	//Select to the database with the corresponding id and verify if 
-			          	//it does not already be used
-			          	
-						$http.get('/adverts/pidroute/' + $(this).attr('id'))
-						.success(function (advert) {
-							$scope.showAdverts.visible = true;
-							$('#form :input').prop('disabled', true);
-							includeService.includeAdvert(advert);
-						}).error(function (err) {//If this pid is not yet use for an another advert
-							$scope.showAdverts.visible = false;
-							$('#form :input').prop('disabled', false);					       	
-						});
-
-					var left = e.clientX-10;
-				    var top = e.clientY-40;
-
-				    $('#ptr').remove();
-				    $('#positionButtonDiv').append( '<p id ="ptr" ><img src="/modules/adverts/img/pointeur.png"/></p>');
-			          	$('#ptr').css('top',top);
-			          	$('#ptr').css('left',left);
-			        
-			        if (top>550){
-			        	top=top-150;
-			        }
-			        
-			        if (left>900){
-			        	left=left-320;
-			        }
-
-			        $('#advert').css('top',top);
-			        $('#advert').css('left',left);
-
-
+				var left = e.clientX-10,
+				top = e.clientY-40;
+			    $('#ptr').remove();
+			    $('#positionButtonDiv').append( '<p id ="ptr" ><img src="/modules/adverts/img/pointeur.png"/></p>');
+	          	$('#ptr').css('top',top);
+	          	$('#ptr').css('left',left);
+		        if (top>550){top=top-150;}
+		        if (left>900){left=left-320;}
+		        $('#advert').css('top',top);
+		        $('#advert').css('left',left);
 			});
-
 		};
 
 
 
 		$scope.zoom = function () {
-
 			$(document).ready(function() {
-
 				function moveButtonClickHandler(e){
 					$('#ptr').remove();
 			    	var pixelsToMoveOnX = 0;
@@ -114,10 +89,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 						scaleToAdd = -scaleToAdd;
 					$('#imgContainer').smartZoom('zoom', scaleToAdd);
 			    }
-				
-
 				$('#imgContainer').smartZoom({'containerClass':'zoomableContainer'});
-				
 				$('#topPositionMap,#leftPositionMap,#rightPositionMap,#bottomPositionMap').bind('click', moveButtonClickHandler);
   				$('#zoomInButton,#zoomOutButton').bind('click', zoomButtonClickHandler);
 			});

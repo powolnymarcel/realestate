@@ -120,7 +120,6 @@ exports.hasAuthorization = function(req, res, next) {
 // we need the fs module for moving the uploaded files
 exports.fileUpload = function(req, res) {
     var form = new multiparty.Form(),
-    	fileNames =[];
     form.parse(req, function(err, fields, files, fieldsList, filesList) {
     	// Get the temporary location of the file
 	     var tmp_path = files.file[0].path,
