@@ -4,11 +4,24 @@
 	</div>
 
 	<div class="row">
-		<div class="showadvert col-md-10">
+		
+	<!--
+		<div style="display:none;margin:0 auto;" class="html5gallery col-md-6" data-skin="gallery" data-width="480" data-height="272" data-resizemode="fill">
+
+			<a data-ng-repeat="item in advert.photo" href="modules/adverts/img/users/{{item.photo}}">
+				<img data-ng-src="modules/adverts/img/users/{{item.photo}}" alt="Photo of {{item}}" >
+			</a>
+		</div>
+	-->
+		<div class="sowadvert col-md-6">
+			<img data-ng-repeat="item in advert.photo" data-ng-src="modules/adverts/img/users/{{item.photo}}" alt="Photo of {{item}}" class="img-thumbnail">	
+		</div>
+
+		<div class="showadvert col-md-6">
 			<div class="row">
-				<div class="col-md-2 text-header">Titre</div>
+				<div class="col-md-2 text-header">Title</div>
 				<div class="col-md-3 text-info">
-					<span data-ng-bind="advert.titre"></span>
+					<span data-ng-bind="advert.title"></span>
 				</div>
 				<div class="col-md-1"></div>
 				<div class="col-md-2 text-header">Region</div>
@@ -18,14 +31,14 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-2 text-header">Surface</div>
+				<div class="col-md-2 text-header">Area</div>
 				<div class="col-md-3 text-info">
-					<span data-ng-bind="advert.surface"></span>m²
+					<span data-ng-bind="advert.area"></span>m²
 				</div>
 				<div class="col-md-1"></div>
-				<div class="col-md-2 text-header">Prix</div>
+				<div class="col-md-2 text-header">Price</div>
 				<div class="col-md-3 text-info">
-					<span data-ng-bind="advert.prix"></span>€
+					<span data-ng-bind="advert.price"></span>€
 				</div>
 			</div>
 
@@ -36,15 +49,14 @@
 					<span data-ng-bind="advert.description"></span>
 				</div>
 			</div>
-				<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="advert.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="advert.user.displayName"></span>
-		</em>
-	</small>	
-		
+			<small>
+				<em class="text-muted">
+					Posted on
+					<span data-ng-bind="advert.created | date:'mediumDate'"></span>
+					by
+					<span data-ng-bind="advert.user.displayName"></span>
+				</em>
+			</small>	
 		</div>
 
 		<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == advert.user._id))">

@@ -9,7 +9,7 @@ angular.module('adverts')
         	var docs ='<div class="col-sm-4"><img src="modules/adverts/img/users/'+advert.photo+'"class="image">'+
         	          '</div> <div class="col-sm-7">'+
         	          '<span style="font-weight: bold;">  '+advert.region+'</span><br/>'+
-              	      '<span>'+advert.surface+' M², '+advert.prix+' €</span><br/>'+
+              	      '<span>'+advert.area+' M², '+advert.price+' €</span><br/>'+
                       '</div>';
             document.getElementById('advert').innerHTML= docs;
         };

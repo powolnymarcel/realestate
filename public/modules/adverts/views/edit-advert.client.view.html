@@ -20,24 +20,24 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="codepostale" class="col-sm-3 control-label">Code postale</label>
+                      <label for="postcode" class="col-sm-3 control-label">Postcode</label>
                       <div class="col-sm-8">
-                        <input type="number" class="form-control" id="codepostale" data-ng-model="advert.codepostale" placeholder="">
+                        <input type="number" class="form-control" id="postcode" data-ng-model="advert.postcode" placeholder="">
                       </div>
                     </div>
                   </fieldset>
 
-                     <fieldset> <legend>Vos informations </legend>
+                     <fieldset> <legend>Contact</legend>
                         <div class="form-group">
-                          <label for="nom" class="col-sm-3 control-label">Votre nom</label>
+                          <label for="lastname" class="col-sm-3 control-label">Last Name</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nom" data-ng-model="advert.nom" placeholder="nom">
+                            <input type="text" class="form-control" id="lastname" data-ng-model="advert.lastname" placeholder="lastname">
                           </div>
                         </div>
                           <div class="form-group">
-                          <label for="nom" class="col-sm-3 control-label">Votre prenom</label>
+                          <label for="firstname" class="col-sm-3 control-label">First name</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="prenom" data-ng-model="advert.prenom" placeholder="prenom">
+                            <input type="text" class="form-control" id="firstname" data-ng-model="advert.firstname" placeholder="firstname">
                           </div>
                         </div>
                         <div class="form-group">
@@ -47,9 +47,9 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="tel" class="col-sm-3 control-label">Téléphone</label>
+                          <label for="phone" class="col-sm-3 control-label">Phone</label>
                           <div class="col-sm-8">
-                            <input type="number" class="form-control" id="tel" data-ng-model="advert.tel" placeholder="">
+                            <input type="number" class="form-control" id="phone" data-ng-model="advert.phone" placeholder="">
                           </div>
                         </div>
                      </fieldset>
@@ -57,20 +57,20 @@
 
                      <fieldset> <legend> Votre annonce</legend>
                        <div class="form-group">
-                          <label for="titre" class="col-sm-3 control-label">Titre de l'annonce</label>
+                          <label for="title" class="col-sm-3 control-label">Title</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="titre" data-ng-model="advert.titre" placeholder="titre de  l'annonce">
+                            <input type="text" class="form-control" id="title" data-ng-model="advert.title" placeholder="title of the advert">
                           </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="type" class="col-sm-3 control-label">Type de bien</label>
+                            <label for="type" class="col-sm-3 control-label">Property</label>
                             <div class="col-sm-8">
                                 <select class="form-control" id="type" data-ng-model="advert.type">
-                                    <option value="appartement">Appartement</option>
-                                    <option value="maison">Maison</option>
-                                    <option value="terrain">Terrain</option>
-                                    <option value="immeuble">Immeuble-Ensemble</option>
+                                    <option value="apartement">Apartement</option>
+                                    <option value="house">House</option>
+                                    <option value="terrain">building</option>
+                                    <option value="real estate">realestate</option>
                                     <option value="mobile">Mobil-Home</option>
                                     <option value="parking">Parking-Box</option>
                                 </select>
@@ -85,16 +85,16 @@
                         </div>
 
                        <div class="form-group">
-                          <label for="surface" class="col-sm-3 control-label">Surface</label>
+                          <label for="area" class="col-sm-3 control-label">Area</label>
                           <div class="col-sm-8">
-                            <input type="number" class="form-control" id="prix" placeholder="Surface" data-ng-model="advert.surface">
+                            <input type="number" class="form-control" id="prix" placeholder="area" data-ng-model="advert.area">
                           </div>
                         </div>
 
                        <div class="form-group">
-                          <label for="prix" class="col-sm-3 control-label">Prix</label>
+                          <label for="price" class="col-sm-3 control-label">Price</label>
                           <div class="col-sm-8">
-                            <input type="number" class="form-control" id="prix" placeholder="prix" data-ng-model="advert.prix">
+                            <input type="number" class="form-control" id="price" placeholder="price" data-ng-model="advert.price">
                           </div>
                         </div>
                      </fieldset>
