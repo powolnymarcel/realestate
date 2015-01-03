@@ -60,6 +60,12 @@ exports.update = function(req, res) {
  */
 exports.delete = function(req, res) {
 	var advert = req.advert ;
+    console.log('->>>>here'+advert.photo[0].photo);
+	for(var item=0;item<advert.photo.length;item++)
+	{
+		var path = 'public/modules/adverts/img/users/'+advert.photo[item].photo;
+		fs.unlink(path);
+	}
 
 	advert.remove(function(err) {
 		if (err) {
