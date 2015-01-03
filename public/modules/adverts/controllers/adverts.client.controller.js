@@ -50,13 +50,39 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 		};
 
+
+		$scope.EditAdvertMapActions = function () {
+
+
+			//changer la couleur de la parcelle qui correspond à l'annonce choisie
+			$('#FormUpdate').on('mouseover','.form-horizontal',function(e) {
+					var pid = '#'+ $(this).find('.indice').text();
+					$('.buildings').attr('class','hideAdvert');
+					$(pid).attr('class','AdvertBlink');
+
+			});
+
+			//restaurer la couleur par défaut de la parcelle
+			$('#FormUpdate').on('mouseout','.form-horizontal',function(e) {
+					var pid = '#'+ $(this).find('.indice').text();
+					$(pid).attr('class','buildings');
+					$('.hideAdvert').attr('class','buildings');
+			});
+		};
+
+
 		//Les actions du map liées à la liste des annonces 
 		$scope.ListAdvertMapActions = function () {
 
 
+			if ($('#ListAdvert').find('.indice')==null){
+				$('#NoAdverts').css('display','none');
+			}
+
 			//changer la couleur de la parcelle qui correspond à l'annonce choisie
 			$('#ListAdvert').on('mouseover','.jumbotron',function(e) {
 					var pid = '#'+ $(this).find('.indice').text();
+					$('.buildings').attr('class','hideAdvert');
 					$(pid).attr('class','AdvertBlink');
 			});
 
@@ -64,6 +90,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 			$('#ListAdvert').on('mouseout','.jumbotron',function(e) {
 					var pid = '#'+ $(this).find('.indice').text();
 					$(pid).attr('class','buildings');
+					$('.hideAdvert').attr('class','buildings');
 			});
 		};
 

@@ -10,7 +10,7 @@ angular.module('adverts').run(['Menus',
 		*/
 
 		Menus.addMenuItem('topbar', 'New advert', 'adverts/create', 'item', '/adverts/create');
-        Menus.addMenuItem('topbar', 'List adverts', 'adverts', 'item', '/adverts');
+        Menus.addMenuItem('topbar', 'My adverts', 'adverts', 'item', '/adverts');
 
 	}
 ]);

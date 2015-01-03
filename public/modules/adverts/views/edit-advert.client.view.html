@@ -2,8 +2,9 @@
     <div class="page-header">
         <h1>Edit Advert</h1>
     </div>
-    <div class="col-md-6">
+    <div id="FormUpdate" class="col-md-6" data-ng-init="EditAdvertMapActions()" >
         <form class="form-horizontal" data-ng-submit="update()" novalidate >
+        <span class="indice" data-ng-bind="advert.pid"></span>
               <fieldset>
                 <legend></legend>
                    <fieldset> <legend>Localisation</legend>
@@ -110,7 +111,7 @@
                 </fieldset>
         </form>
     </div>
-    <div id="contenu" >
+    <div id="contenu">
         <div id="imgContainer" data-ng-init="zoom()">
   
               <map name="positionMap" class="positionMapClass">

@@ -7,6 +7,11 @@
     display: none;
 }
 
+.hideAdvert{
+  fill:grey;
+  stroke:black;
+}
+
 
 .buildings {
     stroke: rgba(70, 70, 90, 1);

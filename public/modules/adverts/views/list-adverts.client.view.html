@@ -1,11 +1,11 @@
 <section data-ng-controller="AdvertsController" data-ng-init="find()">
     <div class="page-header">
-        <h1>Adverts</h1>
+        <h1>My Adverts</h1>
     </div>
     <div class="row">
 
         <div class="col-md-5" id="ListAdvert" data-ng-init="ListAdvertMapActions()">
-            <div class="row jumbotron" data-ng-repeat="advert in adverts">
+            <div class="row jumbotron" data-ng-repeat="advert in adverts" data-ng-show="((authentication.user) && (authentication.user._id == advert.user._id))">
             <span class="indice" data-ng-bind="advert.pid"></span>
                 <a data-ng-href="#!/adverts/{{advert._id}} ">
                 <div class="col-sm-3 text-info">
@@ -71,10 +71,6 @@
               </p>
             </div>
         </div>
-    </div>
-    
-    <div class="alert alert-warning text-center" data-ng-hide="!adverts.$resolved || adverts.length">
-        No Adverts yet, why don't you <a href="/#!/adverts/create">create one</a>?
     </div>
     
 </section>
