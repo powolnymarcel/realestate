@@ -51,43 +51,25 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 					$('#form :input').prop('disabled', false);					       	
 				});
 
+				// Prendre les coordoneés du curseur
+				var left = e.clientX-10;
+			    var top = e.clientY-40;
 
-						$scope.selectedID_= $(this).attr('id');
-						$scope.$apply();
-			          	//Select to the database with the corresponding id and verify if 
-			          	//it does not already be used
-			          	
-						$http.get('/adverts/pidroute/' + $(this).attr('id'))
-						.success(function (advert) {
-							$scope.findAdvertByPID(advert);
-							$scope.showAdverts.visible = true;
-							$('#form :input').prop('disabled', true);
-							includeService.includeAdvert(advert);
-						}).error(function (err) {//If this pid is not yet use for an another advert
-							$scope.showAdverts.visible = false;
-							$scope.pid = $(this).attr('id');
-							$('#form :input').prop('disabled', false);					       	
-						});
-
-					// Prendre les coordoneés du curseur
-					var left = e.clientX-10;
-				    var top = e.clientY-40;
-
-				    //ajouter un pointeur 
-				    $('#ptr').remove();
-				    $('#positionButtonDiv').append( '<p id ="ptr" ><img src="/modules/adverts/img/pointeur.png"/></p>');
-			        $('#ptr').css('top',top);
-			        $('#ptr').css('left',left);
-			        
-			        // ajustement de l'extrait de l'annonce selon la position de la parcelle
-			        if (top>550){
-			        	top=top-150;
-			        }
-			        if (left>900){
-			        	left=left-320;
-			        }
-			        $('#advert').css('top',top);
-			        $('#advert').css('left',left);
+			    //ajouter un pointeur 
+			    $('#ptr').remove();
+			    $('#positionButtonDiv').append( '<p id ="ptr" ><img src="/modules/adverts/img/pointeur.png"/></p>');
+		        $('#ptr').css('top',top);
+		        $('#ptr').css('left',left);
+		        
+		        // ajustement de l'extrait de l'annonce selon la position de la parcelle
+		        if (top>550){
+		        	top=top-150;
+		        }
+		        if (left>900){
+		        	left=left-320;
+		        }
+		        $('#advert').css('top',top);
+		        $('#advert').css('left',left);
 
 			});
 		};
