@@ -128,7 +128,7 @@
     position: fixed;
     width: 320px;
     height: 150px;
-    background: none repeat scroll 0 0 rgba(238,238,238,0.3);
+    background: none repeat scroll 0 0 rgba(238,238,238,0.6);
     border-radius: 5px;
     text-align: left;
     color: #369;
@@ -145,4 +145,77 @@
     font-size: 16px;
     color: black;
 
+}
+
+
+
+
+
+
+
+#galerie
+{
+  width: 530px ;
+  padding: 15px ;
+  margin: 15px 30px ;
+}
+
+#support
+{
+  height: 130px;
+  margin: 0 ;
+  padding: 0 ;
+  list-style:none;
+  text-align: center ;
+  overflow-x: scroll;
+
+}
+
+#galerie_mini
+{
+  height: 110px;
+  margin: 0 ;
+  padding: 0 ;
+  list-style:none;
+
+}
+
+
+#galerie_mini li
+{ 
+  float: left ;
+}
+
+#galerie_mini li a img
+{
+  margin: 4px 4px ;
+  border: 1px solid #dcb ;
+  
+}
+
+#photo
+{
+  clear: both ;
+  margin: 0 auto ;
+}
+
+#photo dt
+{
+  font: italic 2.5em/1.5em Georgia, serif ;
+  color: #dcb ;
+}
+
+#photo dd
+{
+  margin: 0 ;
+}
+
+#photo img
+{
+  border: 1px solid #dcb ;
+}
+
+#big_pict {
+width: 500px ;
+height: 400px;
 }

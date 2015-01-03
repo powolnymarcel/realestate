@@ -1,21 +1,27 @@
 <section data-ng-controller="AdvertsController" data-ng-init="findOne()">
-	<div class="page-header text-primary">
-		<h1 data-ng-bind="advert.titre"></h1>
-	</div>
+	<div class="page-header">
+        <h1>Advert detail</h1>
+    </div>
 
-	<div class="row">
+	<div class="row" >
+	<div id="galerie" data-ng-init="gallery()" class="col-md-6 jumbotron">
+	    <div id="support">
+			<ul id="galerie_mini" >
+				<li data-ng-repeat="item in advert.photo">
+					<a href="modules/adverts/img/users/{{item.photo}}" title="Picture [{{$index + 1}}]">
+					<img class="icons" style="width: 100px; height: 100px;"data-ng-src="modules/adverts/img/users/{{item.photo}}" alt="Photo of {{advert.title}}" >
+					</a>
+				</li>
+			</ul>
+		</div>
 		
-	<!--
-		<div style="display:none;margin:0 auto;" class="html5gallery col-md-6" data-skin="gallery" data-width="480" data-height="272" data-resizemode="fill">
-
-			<a data-ng-repeat="item in advert.photo" href="modules/adverts/img/users/{{item.photo}}">
-				<img data-ng-src="modules/adverts/img/users/{{item.photo}}" alt="Photo of {{item}}" >
-			</a>
-		</div>
-	-->
-		<div class="sowadvert col-md-6">
-			<img data-ng-repeat="item in advert.photo" data-ng-src="modules/adverts/img/users/{{item.photo}}" alt="Photo of {{item}}" class="img-thumbnail">	
-		</div>
+		<dl id="photo">
+			<dt style="display:none;">Picture 0</dt>
+			<br/>
+			<dd><img id="big_pict" src="modules/adverts/img/users/{{advert.photo[0].photo}}" alt="Photo of {{advert.title}}" ></dd>
+		</dl>
+	</div>
+	
 
 		<div class="showadvert col-md-6">
 		    <h4><span class="text-primary" data-ng-bind="advert.title"></span></h4>
@@ -78,16 +84,15 @@
 					by
 					<span data-ng-bind="advert.user.displayName"></span>
 				</em>
-			</small>	
-		</div>
-
-		<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == advert.user._id))">
+			</small>
+			<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == advert.user._id))">
 			<a class="btn btn-primary" href="/#!/adverts/{{advert._id}}/edit">
 				<i class="glyphicon glyphicon-edit"></i>
 			</a>
 			<a class="btn btn-primary" data-ng-click="remove();">
 				<i class="glyphicon glyphicon-trash"></i>
 			</a>
+		</div>
 		</div>
 	</div>	
 </section>

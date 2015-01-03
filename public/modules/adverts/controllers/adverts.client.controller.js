@@ -18,25 +18,35 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 		//fonction: galery
 
-		$scope.galery= function () {
+		$scope.gallery= function () {
 
-			/* jshint ignore:start */
+			$(document).on('mousemove','#galerie',function() {
 
-			var html5GalleryObjects=new function(){
-			this.objects=[];
-			this.addObject=function(p){this.objects.push(p)};
-			this.loadNext=function(p){this.objects[p].onVideoEnd();
-			this.objects[p].isPaused||this.objects[p].slideRun(-1)};
-			this.setHd=function(p,q,n){this.objects[p].setHd(q,n)};
-			this.gotoSlide=function(p,q){"undefined"===typeof q&&(q=0);
-			this.objects[q]&&this.objects[q].slideRun(p)}};
-			if("undefined"===typeof ASYouTubeIframeAPIReady)
-			var ASYouTubeIframeAPIReady=!1,ASYouTubeTimeout=0,onYouTubeIframeAPIReady=function(){ASYouTubeIframeAPIReady=!0};
-			var ASVimeoTimeout=0;
+			  var photos = document.getElementById('galerie_mini') ;
+			  // On récupère l'élément ayant pour id galerie_mini
+			  var liens = photos.getElementsByTagName('a') ;
+			  // On récupère dans une variable tous les liens contenu dans galerie_mini
+			  var big_photo = document.getElementById('big_pict') ;
+			  // Ici c'est l'élément ayant pour id big_pict qui est récupéré, c'est notre photo en taille normale
 
-			/* jshint ignore:end */
+			  var titre_photo = document.getElementById('photo').getElementsByTagName('dt')[0] ;
 
-			alert('hello world');
+			  $('#galerie_mini').css('width',liens.length*110+'px')
+
+
+			  // Et enfin le titre de la photo de taille normale
+			  // Une boucle parcourant l'ensemble des liens contenu dans galerie_mini
+			  for (var i = 0 ; i < liens.length ; ++i) {
+			  	
+			    // Au clique sur ces liens 
+			    liens[i].onclick = function() {
+			      big_photo.src = this.href; // On change l'attribut src de l'image en le remplaçant par la valeur du lien
+			      big_photo.alt = this.title; // On change son titre
+			      titre_photo.firstChild.nodeValue = this.title; // On change le texte de titre de la photo
+			      return false; // Et pour finir on inhibe l'action réelle du lien
+			    };
+			  }
+			});
 
 		};
 
