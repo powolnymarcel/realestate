@@ -134,7 +134,6 @@ exports.fileUpload = function(req, res) {
 	        extension = (extIndex < 0) ? '' : tmp_path.substr(extIndex),
 	        fileName = uuid.v4() + extension, //-->Generate a universal unique identifier
 	        target_path = 'public/modules/adverts/img/users/' + fileName;
-	    fileNames.push(fileName);
 
 	    // Server side file type checker.
 	    var imgs = ['.png', '.jpg', '.jpeg', '.gif', '.bmp'];

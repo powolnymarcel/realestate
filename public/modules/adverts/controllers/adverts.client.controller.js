@@ -14,6 +14,32 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 								 visible:false};
 		};
 
+
+
+		//fonction: galery
+
+		$scope.galery= function () {
+
+			/* jshint ignore:start */
+
+			var html5GalleryObjects=new function(){
+			this.objects=[];
+			this.addObject=function(p){this.objects.push(p)};
+			this.loadNext=function(p){this.objects[p].onVideoEnd();
+			this.objects[p].isPaused||this.objects[p].slideRun(-1)};
+			this.setHd=function(p,q,n){this.objects[p].setHd(q,n)};
+			this.gotoSlide=function(p,q){"undefined"===typeof q&&(q=0);
+			this.objects[q]&&this.objects[q].slideRun(p)}};
+			if("undefined"===typeof ASYouTubeIframeAPIReady)
+			var ASYouTubeIframeAPIReady=!1,ASYouTubeTimeout=0,onYouTubeIframeAPIReady=function(){ASYouTubeIframeAPIReady=!0};
+			var ASVimeoTimeout=0;
+
+			/* jshint ignore:end */
+
+			alert('hello world');
+
+		};
+
 		//Les actions du map liées à la liste des annonces 
 		$scope.ListAdvertMapActions = function () {
 
@@ -50,24 +76,6 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 					$scope.showAdverts.visible = false;
 					$('#form :input').prop('disabled', false);					       	
 				});
-
-
-						$scope.selectedID_= $(this).attr('id');
-						$scope.$apply();
-			          	//Select to the database with the corresponding id and verify if 
-			          	//it does not already be used
-			          	
-						$http.get('/adverts/pidroute/' + $(this).attr('id'))
-						.success(function (advert) {
-							$scope.findAdvertByPID(advert);
-							$scope.showAdverts.visible = true;
-							$('#form :input').prop('disabled', true);
-							includeService.includeAdvert(advert);
-						}).error(function (err) {//If this pid is not yet use for an another advert
-							$scope.showAdverts.visible = false;
-							$scope.pid = $(this).attr('id');
-							$('#form :input').prop('disabled', false);					       	
-						});
 
 					// Prendre les coordoneés du curseur
 					var left = e.clientX-10;
