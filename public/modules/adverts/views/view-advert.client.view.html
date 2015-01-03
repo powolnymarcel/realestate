@@ -18,6 +18,7 @@
 		</div>
 
 		<div class="showadvert col-md-6">
+		    <span class="text-primary"><h4>Advert details</h4></span>
 			<div class="row">
 				<div class="col-md-2 text-header">Title</div>
 				<div class="col-md-3 text-info">
@@ -39,6 +40,27 @@
 				<div class="col-md-2 text-header">Price</div>
 				<div class="col-md-3 text-info">
 					<span data-ng-bind="advert.price"></span>€
+				</div>
+			</div>
+			<br/>
+
+		    <span class="text-primary"><h4>Contacts</h4></span>
+			<div class="row">
+				<div class="col-md-2 text-header">M</div>
+				<div class="col-md-3 text-info">
+					<span data-ng-bind="advert.firstname"></span>
+					<span data-ng-bind="advert.lastname"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2 text-header">Email</div>
+				<div class="col-md-3 text-info">
+					<span data-ng-bind="advert.email"></span>
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-2 text-header">Phone</div>
+				<div class="col-md-3 text-info">
+					<span data-ng-bind="advert.phone"></span>
 				</div>
 			</div>
 
