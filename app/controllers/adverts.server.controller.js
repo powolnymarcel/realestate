@@ -127,14 +127,16 @@ exports.hasAuthorization = function(req, res, next) {
 exports.fileUpload = function(req, res) {
     var form = new multiparty.Form();
     form.parse(req, function(err, fields, files, fieldsList, filesList) {
+    	var fileName = 'building.jpg';
+    	//if(files !== 'undefined')
     	// Get the temporary location of the file
-	     var tmp_path = files.file[0].path,
+	    var tmp_path = files.file[0].path,
 	    //var tmp_path = files.file[0].path,
 	    	extIndex = tmp_path.lastIndexOf('.'),
-	        extension = (extIndex < 0) ? '' : tmp_path.substr(extIndex),
-	        fileName = uuid.v4() + extension, //-->Generate a universal unique identifier
-	        target_path = 'public/modules/adverts/img/users/' + fileName;
-
+	        extension = (extIndex < 0) ? '' : tmp_path.substr(extIndex);
+	        fileName = uuid.v4() + extension; //-->Generate a universal unique identifier
+	        var target_path = 'public/modules/adverts/img/users/' + fileName;
+	        var fn ={photo:fileName};
 	    // Server side file type checker.
 	    var imgs = ['.png', '.jpg', '.jpeg', '.gif', '.bmp'];
 	    if (imgs.indexOf(extension) == -1) {
@@ -145,12 +147,14 @@ exports.fileUpload = function(req, res) {
 	    fs.rename(tmp_path, target_path, function(err) {
 	        if(err){ 
 	        	console.log('Image is not saved:');
-	        	return res.status(400).send('Image is not saved:');
+	        	fn={photo:'building.jpg'};
+	        	return res.send(fn);
+	        	//return res.status(400).send('Image is not saved:');
 	        }
 	 		//return res.json(fileName);
-	 		 var fn ={photo:fileName};
 		     res.send(fn);
 	    });
+
 		
 	
 	});
