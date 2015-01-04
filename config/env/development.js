@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/real-estate-dev',
+	//db: 'mongodb://localhost/real-estate-dev',
+	db:'mongodb://issa:23021990@ds029811.mongolab.com:29811/real-estate-dev',
 	app: {
 		title: 'Real Estate - Development Environment'
 	},
