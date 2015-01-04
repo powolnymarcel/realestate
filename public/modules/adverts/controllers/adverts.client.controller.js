@@ -31,7 +31,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 
 			  var titre_photo = document.getElementById('photo').getElementsByTagName('dt')[0] ;
 
-			  $('#galerie_mini').css('width',liens.length*110+'px')
+			  $('#galerie_mini').css('width',liens.length*110+'px');
 
 
 			  // Et enfin le titre de la photo de taille normale
@@ -75,10 +75,6 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		$scope.ListAdvertMapActions = function () {
 
 
-			if ($('#ListAdvert').find('.indice')==null){
-				$('#NoAdverts').css('display','none');
-			}
-
 			//changer la couleur de la parcelle qui correspond à l'annonce choisie
 			$('#ListAdvert').on('mouseover','.jumbotron',function(e) {
 					var pid = '#'+ $(this).find('.indice').text();
@@ -99,9 +95,14 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 		//Les actions du map liées à la création d'une annonce
 		$scope.CreateAdvertMapActions = function () {
 
-			$('#contenu').on('click','.buildings',function(e) {
+		$('#contenu').on('click','.buildings',function(e) {
 				$scope.selectedID_= $(this).attr('id');
 				$scope.$apply();
+
+				//hide alert "select a parcel"
+				$('#AlerMap').hide();
+
+
 	          	//Select to the database with the corresponding id and verify if 
 	          	//it does not already be used
 				$http.get('/adverts/pidroute/' + $(this).attr('id'))
