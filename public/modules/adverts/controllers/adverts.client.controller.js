@@ -191,7 +191,7 @@ angular.module('adverts').controller('AdvertsController', ['$scope', '$statePara
 					lastname:this.lastname,
 					email:this.email,
 					phone:this.phone,
-					titre:this.titre,
+					title:this.title,
 					description:this.description,
 					area: $scope.selectedArea_,
 					price:this.price
