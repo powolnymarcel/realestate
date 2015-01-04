@@ -66,7 +66,7 @@ public/
 │   │   └── views
 
 Notes : It was very interresting because we have learnt important things such as the using of angular js, express, node js, Mongodb.
-We have also discovered :
+We have been able to improve in :
 	-->how to generate unique identifiers in Node js, 
 	-->how to use multiparty module top arse http requests with content-type multipart/form-data
 	-->how to use fs module to store,move and remove photos
