@@ -5,10 +5,10 @@
     <div class="row">
 
         <div class="col-md-5" id="ListAdvert" data-ng-init="ListAdvertMapActions()">
-            <div class="row jumbotron" data-ng-repeat="advert in adverts" data-ng-show="((authentication.user) && (authentication.user._id == advert.user._id))">
-            <span class="indice" data-ng-bind="advert.pid"></span>
+            <div class="row jumbotron" data-ng-repeat="advert in adverts" data-ng-show="((authentication.user) && (authentication.user._id == advert.user._id))" >
+            <span class="indice" data-ng-bind="advert.pid" ></span>
                 <a data-ng-href="#!/adverts/{{advert._id}} ">
-                <div class="col-sm-3 text-info">
+                <div class="col-sm-3 text-info" >
 
                     <img data-ng-src="modules/adverts/img/users/{{advert.photo[0].photo}}" alt="Photo of {{advert.photo[0].photo}}" class="img-thumbnail">
                 </div>
@@ -39,6 +39,9 @@
                         </a>
                 </div>
             </div>
+        <div id="NoAdvertMessage" class="alert alert-warning text-center">
+          Do you want to <a href="/#!/adverts/create">create</a> new adverts?
+        </div>
         </div>
      
         <div id="contenu" >
